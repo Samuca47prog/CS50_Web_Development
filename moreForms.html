@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>more Forms</title>
+    </head>
+    <body>
+        <form>
+
+            <div>
+                <input name="name" type="text" placeholder="name">
+                <input name="password" type="password" placeholder="password">
+            </div>
+
+            <div>
+                Favorite color?
+                <input name="color" type="radio" value="red"> red
+                <input name="color" type="radio" value="blue"> blue
+                <input name="color" type="radio" value="green"> green
+                <input name="color" type="radio" value="other"> other
+            </div>
+
+            <div>
+                <input name="country" list="countries" placeholder="Country">
+                <datalist id="countries">
+                    <option value="Brazil">
+                    <option value="Japan">
+                    <option value="Germany">
+                    <option value="USA">
+                </datalist>
+            </div>
+
+        </form>
+    </body>
+</html>
