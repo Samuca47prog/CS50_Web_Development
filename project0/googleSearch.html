@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Google</title>
+    <!-- add Google icon -->
+    <link rel="icon" href="images/googleIcon.png">
+
+</head>
+<body>
+
+    <!-- link for other pages -->
+    <a href="googleImages.html">Google Images</a>
+    <a href="googleAdvanced.html">Advanced Search</a>
+
+    <form action="https://google.com/search">
+        <input type="text" name="q">
+        <input type="submit" value="Google Search">
+    </form>
+
+    <form action="https://google.com/search">
+        <!-- set google I'm in lucky filter -->
+        <input hidden type="text" name="btnI" value="I'm+in+luck">
+        <input type="text" name="q">
+        <input type="submit" value="I'm Feeling Lucky">
+    </form>
+
+    <br>
+    <br>
+    <br>
+
+    <form action="https://google.com/search">
+        <!-- Input fields here -->
+        <input type="text" name="q">
+        
+        <!-- This button will post to the 
+        /DEFAULT_URL of the form-->
+        <button type="submit">Google Search</button>
+        
+        <!-- This button will post to the custom 
+        URL of the formaction attribute-->
+        <button type="submit" formaction="/btnI=I'm+in+luck">
+          I'm Feeling Lucky
+        </button>
+      </form>
+
+</body>
+</html>
