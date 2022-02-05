@@ -9,43 +9,65 @@
     <!-- add Google icon -->
     <link rel="icon" href="images/googleIcon.png">
 
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-    <!-- link for other pages -->
-    <a href="googleImages.html">Google Images</a>
-    <a href="googleAdvanced.html">Advanced Search</a>
+    <div id="nav">
+        <a class="toplink">Gmail</a>
+        <a class="toplink">Images</a>
+        <a class="topimage">
+            <img id="topimage-icon" src="http://cdn.onlinewebfonts.com/svg/img_357118.png" alt="topimage-icon">
+        </a>
+    </div>
 
-    <form action="https://google.com/search">
-        <input type="text" name="q">
-        <input type="submit" value="Google Search">
-    </form>
+    <div id="middle">
+        <div id="logo">
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google's logo">
+        </div>
+    
 
-    <form action="https://google.com/search">
-        <!-- set google I'm in lucky filter -->
-        <input hidden type="text" name="btnI" value="I'm+in+luck">
-        <input type="text" name="q">
-        <input type="submit" value="I'm Feeling Lucky">
-    </form>
+        <div id="searchbarcontainer">
+            <input id="searchbar" type="text">
+            <div id="search">
+                <img id="search-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Google_Magnifying_Glass.svg/480px-Google_Magnifying_Glass.svg.png" alt="search-icon">
+            </div>
+            <div id="voice">
+                <img id="voice-icon" src="https://freepngimg.com/thumb/microphone/70666-voice-microphone-google-search-logo-png-file-hd.png" alt="voice-icon">
+            </div>
+        </div>
 
-    <br>
-    <br>
-    <br>
+        <div id="buttons">
+            <div class="button">
+                Google Search
+            </div>
+            <div class="button">
+                I'm Feeling Lucky
+            </div>
+        </div>
 
-    <form action="https://google.com/search">
-        <!-- Input fields here -->
-        <input type="text" name="q">
-        
-        <!-- This button will post to the 
-        /DEFAULT_URL of the form-->
-        <button type="submit">Google Search</button>
-        
-        <!-- This button will post to the custom 
-        URL of the formaction attribute-->
-        <button type="submit" formaction="/btnI=I'm+in+luck">
-          I'm Feeling Lucky
-        </button>
-      </form>
+    </div>
+
+    <div id="footer">
+        <div id="country">
+            Brazil
+        </div>
+        <div id="left-footer">
+            <div class="foot-link">
+                About
+            </div>
+            <div class="foot-link">
+                Advertising
+            </div>
+            <div class="foot-link">
+                Business
+            </div>
+            <div class="foot-link">
+                How Search works
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
