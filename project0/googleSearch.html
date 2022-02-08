@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
 
     <div id="nav">
@@ -26,26 +28,27 @@
         <div id="logo">
             <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google's logo">
         </div>
-    
+
 
         <div id="searchbarcontainer">
-            <input id="searchbar" type="text">
-            <div id="search">
-                <img id="search-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Google_Magnifying_Glass.svg/480px-Google_Magnifying_Glass.svg.png" alt="search-icon">
-            </div>
-            <div id="voice">
-                <img id="voice-icon" src="https://freepngimg.com/thumb/microphone/70666-voice-microphone-google-search-logo-png-file-hd.png" alt="voice-icon">
-            </div>
+            <form action="https://google.com/search" method="get">
+                <input id="searchbar" type="text" name="q">
+                <div id="search">
+                    <img id="search-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Google_Magnifying_Glass.svg/480px-Google_Magnifying_Glass.svg.png" alt="search-icon">
+                </div>
+                <div id="voice">
+                    <img id="voice-icon" src="https://freepngimg.com/thumb/microphone/70666-voice-microphone-google-search-logo-png-file-hd.png" alt="voice-icon">
+                </div>
+
+                <div id="buttons">
+                    <input type="submit" class="button" value="Google Search">
+                    <input type="submit" class="button" name="btnI" value="I'm Feeling Lucky">
+                </div>
+
+            </form>
         </div>
 
-        <div id="buttons">
-            <div class="button">
-                Google Search
-            </div>
-            <div class="button">
-                I'm Feeling Lucky
-            </div>
-        </div>
+
 
     </div>
 
@@ -53,21 +56,34 @@
         <div id="country">
             Brazil
         </div>
-        <div id="left-footer">
-            <div class="foot-link">
-                About
+        <div id="down-footer">
+            <div id="left-footer">
+                <div class="foot-link">
+                    About
+                </div>
+                <div class="foot-link">
+                    Advertising
+                </div>
+                <div class="foot-link">
+                    Business
+                </div>
+                <div class="foot-link">
+                    How Search works
+                </div>
             </div>
-            <div class="foot-link">
-                Advertising
-            </div>
-            <div class="foot-link">
-                Business
-            </div>
-            <div class="foot-link">
-                How Search works
+            <div id="right-footer">
+                <div class="foot-link">
+                    Privacy
+                </div>
+                <div class="foot-link">
+                    Terms
+                </div>
+                <div class="foot-link">
+                    settings
+                </div>
             </div>
         </div>
     </div>
-
 </body>
+
 </html>

@@ -1,8 +1,10 @@
-html, body {
+html,
+body {
     margin: 0px;
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #nav {
@@ -50,17 +52,17 @@ a:hover {
 #searchbar {
     padding-top: 10px;
     padding-bottom: 10px;
-    outline: 0;
     width: 500px;
     border-radius: 20px;
     border: 2px solid #d4d4d4;
-    padding-right: 45px;
-    padding-left: 45px;
+    padding-right: 40px;
+    padding-left: 40px;
 }
 
-#search, #voice {
-    position: absolute;
-    top: 0;
+#search,
+#voice {
+    position: fixed;
+    top: 9px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -68,7 +70,7 @@ a:hover {
 }
 
 #search {
-    left: 0;
+    left: 27%;
 }
 
 #search-icon {
@@ -78,7 +80,7 @@ a:hover {
 }
 
 #voice {
-    right: 0;
+    right: 27%;
 }
 
 #voice-icon {
@@ -112,19 +114,24 @@ a:hover {
     border: 2px solid transparent;
 }
 
-#footer {
-    background-color: rgb(211, 211, 211);
+#footer div {
+    background-color: rgb(236, 236, 236);
+    padding: 8px;
 }
 
-#country {
-    padding: 0px 10px;
+#down-footer {
+    position: relative;
+    border-top: 2px solid rgb(216, 216, 216);
 }
 
 #left-footer {
-    margin-top: 10px;
     display: flex;
-    justify-content: flex-start;
-    border-top: 2px solid rgb(187, 187, 187);
+    float: left;
+}
+
+#right-footer {
+    display: flex;
+    float: right;
 }
 
 .foot-link {
