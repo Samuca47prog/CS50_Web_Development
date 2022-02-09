@@ -8,12 +8,43 @@
     <title>Google Advanced Search</title>
     <!-- add Google icon -->
     <link rel="icon" href="images/googleIcon.png">
+    <link rel="stylesheet" href="stylesAdvanced.css">
 
 </head>
 <body>
 
-    <!-- link to come back -->
-    <a href="googleSearch.html">Google Search</a>
+    <div id="nav">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1024px-Google_2015_logo.svg.png" alt="Google's logo">
+        <a class="toplink" href="googleSearch.html">Google Search</a>
+        <a class="topimage">
+            <img id="topimage-icon" src="http://cdn.onlinewebfonts.com/svg/img_357118.png" alt="topimage-icon">
+        </a>
+    </div>
+
+    <div id="forms-body">
+        <form action="https://www.google.com/search">
+            <div>
+                all these words:
+                <input id="box_all-these-words" type="text" name="as_q">
+            </div>
+            <div>
+                this exact expression or phrase:
+                <input id="box_this-exact-expression" type="text" name="as_epq">
+            </div>
+            <div>
+                any of these words:
+                <input id="box_any-of-these" type="text" name="as_oq">
+            </div>
+            <div>
+                none of these words:
+                <input id="box_none-of-these" type="text" name="as_eq">
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+            
+        </form>
+    </div>
 
 </body>
 </html>

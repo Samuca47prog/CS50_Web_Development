@@ -1,25 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Google Images</title>
+    <title>Google</title>
     <!-- add Google icon -->
     <link rel="icon" href="images/googleIcon.png">
 
+    <link rel="stylesheet" href="stylesImages.css">
+
 </head>
+
 <body>
-    <!-- link to come back -->
-    <a href="googleSearch.html">Google Search</a>
 
-    <form action="https://google.com/search">
-        <!-- set google images filter -->
-        <input hidden type="text" name="tbm" value="isch">
-        <input type="text" name="q">
-        <input type="submit" value="Google Search">
-    </form>
+    <div id="nav">
+        <a class="toplink" href="googleSearch.html">Google Search</a>
+        <a class="topimage">
+            <img id="topimage-icon" src="http://cdn.onlinewebfonts.com/svg/img_357118.png" alt="topimage-icon">
+        </a>
+    </div>
 
+    <div id="middle">
+        <div id="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Google_Images_2015_logo.svg/640px-Google_Images_2015_logo.svg.png" alt="Google's logo">
+        </div>
+
+
+        <div id="searchbarcontainer">
+            <form action="https://google.com/search" method="get">
+                <input id="searchbar" type="text" name="q">
+                <input hidden type="text" name="tbm" value="isch">
+                <div id="search">
+                    <img id="search-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Google_Magnifying_Glass.svg/480px-Google_Magnifying_Glass.svg.png" alt="search-icon">
+                </div>
+                <div id="voice">
+                    <img id="voice-icon" src="https://freepngimg.com/thumb/microphone/70666-voice-microphone-google-search-logo-png-file-hd.png" alt="voice-icon">
+                </div>
+                <div id="buttons">
+                    <input type="submit" class="button" value="Search">
+                </div>
+
+            </form>
+        </div>
+
+
+
+    </div>
+
+    <div id="footer">
+        <div id="country">
+            Brazil
+        </div>
+        <div id="down-footer">
+            <div id="left-footer">
+                <div class="foot-link">
+                    About
+                </div>
+                <div class="foot-link">
+                    Advertising
+                </div>
+                <div class="foot-link">
+                    Business
+                </div>
+                <div class="foot-link">
+                    How Search works
+                </div>
+            </div>
+            <div id="right-footer">
+                <div class="foot-link">
+                    Privacy
+                </div>
+                <div class="foot-link">
+                    Terms
+                </div>
+                <div class="foot-link">
+                    settings
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
