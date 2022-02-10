@@ -13,7 +13,8 @@ body {
     margin-top: 25px;
 }
 
-#nav a {
+#nav a,
+#nav div {
     padding: 10px;
     display: flex;
 }
@@ -29,4 +30,24 @@ body {
     display: flex;
     left: 20px;
     width: 60px;
+}
+
+#page-title {
+    position: relative;
+    left: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: red;
+}
+
+#forms-body {
+    display: flex;
+    position: relative;
+    margin: 20px;
+    margin-right: 20px;
+}
+
+#first-body-text > #first-body-right-text {
+    position: absolute;
+    right: 0;
 }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,40 +12,55 @@
     <link rel="stylesheet" href="stylesAdvanced.css">
 
 </head>
+
 <body>
 
     <div id="nav">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1024px-Google_2015_logo.svg.png" alt="Google's logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1024px-Google_2015_logo.svg.png"
+            alt="Google's logo">
         <a class="toplink" href="googleSearch.html">Google Search</a>
         <a class="topimage">
-            <img id="topimage-icon" src="http://cdn.onlinewebfonts.com/svg/img_357118.png" alt="topimage-icon">
-        </a>
+            <img id="topimage-icon" src="http://cdn.onlinewebfonts.com/svg/img_357118.png" alt="topimage-icon"></a>
+    </div>
+
+    <div id="page-title">
+        Advansed Search
     </div>
 
     <div id="forms-body">
         <form action="https://www.google.com/search">
-            <div>
-                all these words:
-                <input id="box_all-these-words" type="text" name="as_q">
-            </div>
-            <div>
-                this exact expression or phrase:
-                <input id="box_this-exact-expression" type="text" name="as_epq">
-            </div>
-            <div>
-                any of these words:
-                <input id="box_any-of-these" type="text" name="as_oq">
-            </div>
-            <div>
-                none of these words:
-                <input id="box_none-of-these" type="text" name="as_eq">
-            </div>
-            <div>
-                <input type="submit" value="Submit">
-            </div>
-            
+            <div id="first-forms-body">
+                <div id="first-body-text">
+                    <div id="first-body-left-text">
+                        Find pages with...
+                    </div>
+                    <div id="first-body-right-text">
+                        Do this in the search box.
+                    </div>
+                </div>
+                <div>
+                    all these words:
+                    <input id="box_all-these-words" type="text" name="as_q">
+                </div>
+                <div>
+                    this exact expression or phrase:
+                    <input id="box_this-exact-expression" type="text" name="as_epq">
+                </div>
+                <div>
+                    any of these words:
+                    <input id="box_any-of-these" type="text" name="as_oq">
+                </div>
+                <div>
+                    none of these words:
+                    <input id="box_none-of-these" type="text" name="as_eq">
+                </div>
+                <div>
+                    <input type="submit" value="Submit">
+                </div>
+            </div> <!-- End of first body -->
         </form>
     </div>
 
 </body>
+
 </html>
