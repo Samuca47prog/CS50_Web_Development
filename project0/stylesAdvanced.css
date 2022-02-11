@@ -41,13 +41,19 @@ body {
 }
 
 #forms-body {
+    background-color: blue;
     display: flex;
-    position: relative;
     margin: 20px;
     margin-right: 20px;
 }
 
-#first-body-text > #first-body-right-text {
-    position: absolute;
+#first-body-text {
+    background-color: aqua;
+    display: inline;
+}
+
+#first-body-right-text {
     right: 0;
 }
+
+
