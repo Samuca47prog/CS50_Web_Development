@@ -47,13 +47,65 @@ body {
     margin-right: 20px;
 }
 
-#first-body-text {
-    background-color: aqua;
-    display: inline;
+#first-body-text > div {
+    background-color: rgb(47, 247, 247);
+    display: inline-block;
 }
 
 #first-body-right-text {
+    position: absolute;
+    margin-right: 20px;
     right: 0;
 }
 
+.filter-tag {
+    background-color: darkgray;
+    width: 250px;
+    display: inline-block;
+}
 
+.box {
+    width: 400px;
+}
+
+.example-text {
+    background-color: blueviolet;
+}
+
+.example {
+    background-color: coral;
+}
+
+#submit-button {
+    position: absolute;
+    left: 555px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: rgb(46, 46, 253);
+    border: 1px solid blue;
+    border-radius: 5px;
+    color: aliceblue;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer div {
+    display: flex;
+    background-color: rgb(236, 236, 236);
+    padding: 8px;
+}
+
+.foot-link {
+    text-decoration: none;
+    padding: 0px 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+.foot-link:hover {
+    text-decoration: underline;
+}
