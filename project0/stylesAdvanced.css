@@ -41,50 +41,69 @@ body {
 }
 
 #forms-body {
-    background-color: blue;
+    /* background-color: blue; */
     display: flex;
     margin: 20px;
     margin-right: 20px;
 }
 
 #first-body-text > div {
-    background-color: rgb(47, 247, 247);
     display: inline-block;
+}
+
+#first-forms-body > div {
+    margin-top: 15px;
 }
 
 #first-body-right-text {
     position: absolute;
     margin-right: 20px;
-    right: 0;
+    right: 283px;
+}
+
+label {
+    margin-left: 6px;
 }
 
 .filter-tag {
-    background-color: darkgray;
     width: 250px;
     display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
 }
 
 .box {
-    width: 400px;
+    width: 500px;
+}
+
+.box:focus {
+    border: 3px solid blue;
 }
 
 .example-text {
-    background-color: blueviolet;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
 }
 
 .example {
-    background-color: coral;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8px;
+    color: rgb(94, 94, 94);
 }
 
 #submit-button {
     position: absolute;
-    left: 555px;
+    left: 664px;
     margin-top: 20px;
     padding: 10px;
     background-color: rgb(46, 46, 253);
     border: 1px solid blue;
     border-radius: 5px;
     color: aliceblue;
+}
+
+#submit-button:hover {
+    background-color: blue;
 }
 
 #footer {
