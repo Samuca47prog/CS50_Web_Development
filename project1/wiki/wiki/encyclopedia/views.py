@@ -10,17 +10,20 @@ class Query(forms.Form):
     q = forms.CharField(label="Search..")
 
 def index(request):
+    # if user has POSTed something, render what he has asked
+    # else, render the index page
     if request.method == "POST":
         form = Query(request.POST)
-        name = form.cleaned_data["q"]
-        return renderPage(request, name)
-    
-    entries = util.list_entries()
-    entries.remove("notFound")
-    return render(request, "encyclopedia/index.html", {
-        "entries": entries,
-        "form": Query()
-    })
+        if form.is_valid():
+            name = form.cleaned_data["q"]
+            return renderPage(request, name)
+    else:
+        entries = util.list_entries()
+        entries.remove("notFound")
+        return render(request, "encyclopedia/index.html", {
+            "entries": entries,
+            "form": Query()
+        })
 
 def renderPage(request, name): 
     name = name.lower()

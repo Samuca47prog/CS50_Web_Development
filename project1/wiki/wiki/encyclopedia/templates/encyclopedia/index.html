@@ -4,6 +4,15 @@
     Encyclopedia
 {% endblock %}
 
+{% block search %}
+    <form action="{% url 'encyclopedia:index' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <!-- <input class="search" type="text" name="q" placeholder="Search Encyclopedia"> -->
+    </form>
+{% endblock %}
+
+
 {% block body %}
     <h1>All Pages</h1>
 
