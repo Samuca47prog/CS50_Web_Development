@@ -7,7 +7,7 @@ from . import util
 import markdown
 
 class Query(forms.Form):
-    q = forms.CharField(label="Search..")
+    q = forms.CharField(widget=forms.TextInput(attrs={'class': 'search'}), label="")
 
 def index(request):
     # if user has POSTed something, render what he has asked
