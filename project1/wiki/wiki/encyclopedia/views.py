@@ -1,20 +1,25 @@
 from django.http import HttpResponse
+from django.contrib import messages
 from django.shortcuts import render
 from django import forms
+import re
 
 from . import util
 
 import markdown
 
-class Query(forms.Form):
+class QuerySearch(forms.Form):
     q = forms.CharField(widget=forms.TextInput(attrs={'class': 'search'}), label="")
 
+class NewPage(forms.Form):
+    title = forms.CharField(widget=forms.TextInput(attrs={'name': 'title'}), label="Title")
+    body = forms.CharField(widget=forms.Textarea(attrs={'name': 'body', 'rows': 3, 'cols': 10}), label="Body")
 
 def index(request):
     # if user has POSTed something, render a list of possible pages to get in
     # else, render the index page
     if request.method == "POST":
-        form = Query(request.POST)
+        form = QuerySearch(request.POST)
         if form.is_valid():
             q = form.cleaned_data["q"]
             return queryResponse(request, q)
@@ -23,7 +28,7 @@ def index(request):
         entries.remove("notFound")
         return render(request, "encyclopedia/index.html", {
             "entries": entries,
-            "form": Query()
+            "form": QuerySearch()
         })
 
 def renderPage(request, name): 
@@ -34,7 +39,7 @@ def renderPage(request, name):
     return render(request, "encyclopedia/renderPage.html", {
         "page": markdown.markdown(util.get_entry(name)),
         "title": name,
-        "form": Query(),
+        "form": QuerySearch(),
     })
     
 # answer user query in the search box
@@ -55,10 +60,32 @@ def queryResponse(request, q):
     return render(request, "encyclopedia/queryResponse.html", {
         "entries": substring_entries,
         "q": q,
-        
+        "form": QuerySearch()
     })
 
 def createNewPage(request):
-    return render(request, "encyclopedia/createNewPage.html", {
-        "form": Query()
-    })
+    # if user has POSTed something, save that entry
+    # else, render create new page 
+    if request.method == "POST":
+        form = NewPage(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data["title"]
+            body = form.cleaned_data["body"]
+
+            body = "# " + title + "\n" + body
+            title = re.sub("[\s'!@#$%¨&*+]","", title) # eliminate spaces
+
+            # check if the incoming page already exists
+            entries = util.list_entries()
+            if title in entries:
+                messages.info(request, 'Page with this title already exists')
+                return HttpResponse("Page with this title already exists")
+
+            # save new page
+            util.save_entry(title, body)
+            return renderPage(request, title)
+    else:
+        return render(request, "encyclopedia/createNewPage.html", {
+            "form": QuerySearch(),
+            "content": NewPage()
+        })
