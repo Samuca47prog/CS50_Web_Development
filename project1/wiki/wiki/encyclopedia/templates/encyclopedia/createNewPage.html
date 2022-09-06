@@ -8,7 +8,7 @@
     <form action="{% url 'encyclopedia:index' %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <!-- <input class="search" type="text" name="q" placeholder="Search Encyclopedia"> -->
+        
     </form>
 {% endblock %}
 
@@ -16,10 +16,11 @@
 {% block body %}
     <h1>Create New Page</h1>
 
-    <!-- <ul>
-        {% for entry in entries %}
-            <li><a href="{{entry}}">{{ entry }}</a></li>
-        {% endfor %}
-    </ul> -->
+    <form action="{% url 'encyclopedia:createNewPage' %}" method="post">
+        {% csrf_token %}
+        {{ content }}
+        <input type="submit" name="savePage" placeholder="Save Page">
+    </form>
+
 
 {% endblock %}
