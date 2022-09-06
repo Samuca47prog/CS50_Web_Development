@@ -1,4 +1,4 @@
-from logging import PlaceHolder
+from django.http import HttpResponse
 from django.shortcuts import render
 from django import forms
 
@@ -8,6 +8,7 @@ import markdown
 
 class Query(forms.Form):
     q = forms.CharField(widget=forms.TextInput(attrs={'class': 'search'}), label="")
+
 
 def index(request):
     # if user has POSTed something, render a list of possible pages to get in
@@ -32,7 +33,8 @@ def renderPage(request, name):
         name = "notFound"
     return render(request, "encyclopedia/renderPage.html", {
         "page": markdown.markdown(util.get_entry(name)),
-        "title": name
+        "title": name,
+        "form": Query(),
     })
     
 # answer user query in the search box
@@ -52,5 +54,11 @@ def queryResponse(request, q):
     
     return render(request, "encyclopedia/queryResponse.html", {
         "entries": substring_entries,
-        "q": q
+        "q": q,
+        
+    })
+
+def createNewPage(request):
+    return render(request, "encyclopedia/createNewPage.html", {
+        "form": Query()
     })

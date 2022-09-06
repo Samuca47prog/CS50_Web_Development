@@ -1,7 +1,7 @@
 {% extends "encyclopedia/layout.html" %}
 
 {% block title %}
-    {{ title }} - page
+    {{title}}
 {% endblock %}
 
 {% block search %}
@@ -12,6 +12,14 @@
     </form>
 {% endblock %}
 
+
 {% block body %}
-        {{ page|safe }}
+    <h1>Create New Page</h1>
+
+    <!-- <ul>
+        {% for entry in entries %}
+            <li><a href="{{entry}}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul> -->
+
 {% endblock %}
