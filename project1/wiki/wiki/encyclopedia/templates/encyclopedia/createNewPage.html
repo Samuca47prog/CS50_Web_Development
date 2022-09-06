@@ -1,4 +1,5 @@
 {% extends "encyclopedia/layout.html" %}
+{% load static %}
 
 {% block title %}
     {{title}}
@@ -18,8 +19,10 @@
 
     <form action="{% url 'encyclopedia:createNewPage' %}" method="post">
         {% csrf_token %}
-        {{ content }}
-        <input type="submit" name="savePage" placeholder="Save Page">
+        <div class="form-block">
+            {{ content }}
+            <input type="submit" class="btn" name="savePage" value="Save Page">
+        </div>
     </form>
 
 

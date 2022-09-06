@@ -36,3 +36,21 @@ textarea {
 .sidebar h2 {
     margin-top: 5px;
 }
+
+.form-block {
+    display: inline-block; 
+}
+
+.form-block * {
+    margin-bottom: 8px;
+}
+
+.btn {
+    width: 100px;
+    height: 40px;
+
+    color: #f0f0f0;
+    background: grey;
+    
+    border-radius: 6px;
+}

@@ -1,3 +1,4 @@
+from cProfile import label
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render
@@ -12,8 +13,8 @@ class QuerySearch(forms.Form):
     q = forms.CharField(widget=forms.TextInput(attrs={'class': 'search'}), label="")
 
 class NewPage(forms.Form):
-    title = forms.CharField(widget=forms.TextInput(attrs={'name': 'title'}), label="Title")
-    body = forms.CharField(widget=forms.Textarea(attrs={'name': 'body', 'rows': 3, 'cols': 10}), label="Body")
+    title = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Title', 'style': 'width: 400px;', 'class': 'form-control'}))
+    body = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder': 'Body', 'style': 'width: 550px;', 'class': 'form-control'}))
 
 def index(request):
     # if user has POSTed something, render a list of possible pages to get in
