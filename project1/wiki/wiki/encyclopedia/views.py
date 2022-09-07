@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render
 from django import forms
 import re
+import random
 
 from . import util
 
@@ -90,3 +91,11 @@ def createNewPage(request):
             "form": QuerySearch(),
             "content": NewPage()
         })
+
+def randomPage(request):
+    entries = util.list_entries()
+    entries.remove("notFound")
+
+    q = random.choice(entries)
+
+    return renderPage(request, q)
