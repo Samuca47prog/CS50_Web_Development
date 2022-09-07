@@ -14,4 +14,5 @@
 
 {% block body %}
         {{ page|safe }}
+        <a class="btn short-btn" href="{% url 'encyclopedia:editPage' name=title %}">Edit Page</a>
 {% endblock %}

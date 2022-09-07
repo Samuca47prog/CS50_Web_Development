@@ -1,4 +1,5 @@
 from cProfile import label
+from dataclasses import fields
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import render
@@ -16,6 +17,10 @@ class QuerySearch(forms.Form):
 class NewPage(forms.Form):
     title = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Title', 'style': 'width: 400px;', 'class': 'form-control'}))
     body = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder': 'Body', 'style': 'width: 550px;', 'class': 'form-control'}))
+
+class EditPage(forms.Form):
+    body = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder': 'Body', 'style': 'width: 550px;', 'class': 'form-control'}))
+    
 
 def index(request):
     # if user has POSTed something, render a list of possible pages to get in
@@ -74,7 +79,6 @@ def createNewPage(request):
             title = form.cleaned_data["title"]
             body = form.cleaned_data["body"]
 
-            body = "# " + title + "\n" + body
             title = re.sub("[\s'!@#$%¨&*+]","", title) # eliminate spaces
 
             # check if the incoming page already exists
@@ -91,6 +95,22 @@ def createNewPage(request):
             "form": QuerySearch(),
             "content": NewPage()
         })
+
+def editPage(request, name):
+    if request.method == "POST":
+        form = EditPage(request.POST)
+        if form.is_valid():
+            body = form.cleaned_data["body"]
+            util.save_entry(name, body)
+            return renderPage(request,name)
+    else:
+        form = EditPage(initial={'body': util.get_entry(name)})
+        return render(request, "encyclopedia/editPage.html", {
+                "title": name,
+                "content": form,
+            })
+
+
 
 def randomPage(request):
     entries = util.list_entries()
