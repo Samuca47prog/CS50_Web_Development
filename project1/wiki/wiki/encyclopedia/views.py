@@ -79,17 +79,16 @@ def createNewPage(request):
             title = form.cleaned_data["title"]
             body = form.cleaned_data["body"]
 
-            title = re.sub("[\s'!@#$%¨&*+]","", title) # eliminate spaces
+            #title = re.sub("[\s'!@#$%¨&*+]","", title) # eliminate spaces
 
-            # check if the incoming page already exists
             entries = util.list_entries()
-            if title in entries:
-                messages.info(request, 'Page with this title already exists')
-                return HttpResponse("Page with this title already exists")
 
-            # save new page
-            util.save_entry(title, body)
-            return renderPage(request, title)
+            if title in entries:
+                return renderPage(request, "pageNameError")
+            else:
+                # save new page
+                util.save_entry(title, body)
+                return renderPage(request, title)
     else:
         return render(request, "encyclopedia/createNewPage.html", {
             "form": QuerySearch(),
