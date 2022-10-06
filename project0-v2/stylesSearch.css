@@ -1,0 +1,170 @@
+html,
+body {
+    margin: 0px;
+    height: 100%;
+
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.text {
+    font-family: Roboto, Arial, sans-serif;
+    text-decoration: none;
+    color: black;
+    
+}
+
+/* =========================================================== */
+/* nav */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 6px;
+}
+
+nav * {
+    margin-left: 25px;
+}
+
+.nav__icon {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    padding: 8px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================== */
+/* main */
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main__logo-img {
+    width: 450px;
+    height: 170px;
+}
+
+.main__search{
+    padding: 20px;
+}
+
+.main__searchbar-container {
+    display: flex;
+    align-items: center;
+}
+
+.main__searchbar {
+    width: 600px;
+    height: 35px;
+
+    border-radius: 32px;
+    border: 2px solid #d4d4d4;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 90px;
+    padding-left: 50px;
+}
+
+.icon {
+    height: 22px;
+}
+
+.main__search-icon {
+    position: relative;
+
+    left: 35px;
+}
+
+.main__search-icons {
+    display: flex;
+    align-items: center;
+
+    position: relative;
+    right: 90px;
+}
+
+.main__search-icons img {
+    margin-left: 15px;
+}
+
+.main__searchbar:hover,
+.main__searchbar:checked {
+    box-shadow: 0 0 10px 2px rgb(189, 189, 189);
+}
+
+.main__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.main__button {
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 10px 16px;
+
+    cursor: pointer;
+
+    background-color: #e4e4e4;
+    border-radius: 4px;
+    border: 2px solid transparent;
+}
+
+.button:hover {
+    box-shadow: 0 0 2px 1px rgb(187, 187, 187);
+    border: 2px solid transparent;
+}
+
+/* =========================================================== */
+/* footer */
+
+footer {
+    position: absolute;
+    bottom: 0;
+
+    background-color: rgb(236, 236, 236);
+
+    width: 100%;
+}
+
+.footer__container-top {
+    padding: 15px;
+}
+
+.footer__container-bottom {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
+    border-top: 2px solid rgb(216, 216, 216);
+}
+
+.footer__link {
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+.footer__container-left, 
+.footer__container-right {
+    padding: 15px;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
