@@ -7,32 +7,30 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#nav {
+/* =========================================================== */
+/* nav */
+
+.nav {
     display: flex;
+    justify-content: space-between;
+}
+
+.nav div {
+    display: flex;
+    align-items: center;
     justify-content: flex-end;
-    margin-top: 25px;
+
+    padding: 6px;
 }
 
-#nav a,
-#nav div {
-    padding: 10px;
-    display: flex;
+nav img {
+    height: 20px;
 }
 
-#topimage-icon {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-}
+/* =========================================================== */
+/* main */
 
-#nav > img {
-    position: absolute;
-    display: flex;
-    left: 20px;
-    width: 60px;
-}
-
-#page-title {
+.page-title {
     position: relative;
     left: 50px;
     font-family: Arial, Helvetica, sans-serif;
@@ -40,22 +38,22 @@ body {
     color: red;
 }
 
-#forms-body {
+.main_form-body {
     /* background-color: blue; */
     display: flex;
     margin: 20px;
     margin-right: 20px;
 }
 
-#first-body-text > div {
+.first-body-text > div {
     display: inline-block;
 }
 
-#first-forms-body > div {
+.first-forms-body > div {
     margin-top: 15px;
 }
 
-#first-body-right-text {
+.first-body-right-text {
     position: absolute;
     margin-right: 20px;
     right: 283px;
@@ -104,27 +102,4 @@ label {
 
 #submit-button:hover {
     background-color: blue;
-}
-
-#footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
-
-#footer div {
-    display: flex;
-    background-color: rgb(236, 236, 236);
-    padding: 8px;
-}
-
-.foot-link {
-    text-decoration: none;
-    padding: 0px 10px;
-    margin-bottom: 5px;
-    margin-top: 5px;
-}
-
-.foot-link:hover {
-    text-decoration: underline;
 }
