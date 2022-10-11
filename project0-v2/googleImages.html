@@ -11,77 +11,65 @@
     <link rel="icon" href="images/googleIcon.png">
 
     <link rel="stylesheet" href="stylesImages.css">
+    <link rel="stylesheet" href="stylesSearch.css">
 
 </head>
 
 <body>
 
-    <div id="nav">
-        <a class="toplink" href="googleSearch.html">Google Search</a>
-        <a class="topimage">
-            <img id="topimage-icon" src="http://cdn.onlinewebfonts.com/svg/img_357118.png" alt="topimage-icon">
-        </a>
-    </div>
+    <!-- =========================================================== -->
+    <!-- nav -->
+    <nav>
+        <a class="nav__link text" href="googleSearch.html">Search</a>
+        <a class="nav__link text" href="googleAdvanced.html">Advanced Search</a>
+        <img class="nav__icon" src="./assets/img/nav-icon.png" alt="topimage-icon">
+    </nav>
 
-    <div id="middle">
-        <div id="logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Google_Images_2015_logo.svg/640px-Google_Images_2015_logo.svg.png" alt="Google's logo">
-        </div>
+    <!-- =========================================================== -->
+    <!-- main -->
+    <main class="main">
+        <section class="main__logo">
+            <img class="main__logo-img" src="./assets/img/google-images.png" alt="Google's logo">
+        </section>
 
-
-        <div id="searchbarcontainer">
+        <section class="main__search">
             <form action="https://google.com/search" method="get">
-                <input id="searchbar" type="text" name="q">
-                <input hidden type="text" name="tbm" value="isch">
-                <div id="search">
-                    <img id="search-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Google_Magnifying_Glass.svg/480px-Google_Magnifying_Glass.svg.png" alt="search-icon">
-                </div>
-                <div id="voice">
-                    <img id="voice-icon" src="https://freepngimg.com/thumb/microphone/70666-voice-microphone-google-search-logo-png-file-hd.png" alt="voice-icon">
-                </div>
-                <div id="buttons">
-                    <input type="submit" class="button" value="Search">
+                <div class="main__searchbar-container">
+                    <img class="main__search-icon icon" src="./assets/img/google-search-icon.png" alt="search icon">
+                    <input class="main__searchbar" type="text" name="q">
+                    <input hidden type="text" name="tbm" value="isch">
+                    <div class="main__search-icons">
+                        <img class="main__keyboard-icon icon" src="./assets/img/google-keyboard.png" alt="keyboard icon">
+                        <img class="main__mic-icon icon" src="./assets/img/google-mic.png" alt="mic icon">
+                    </div>
                 </div>
 
+                <div class="main__buttons">
+                    <input type="submit" class="main__button" value="Search">
+                </div>
             </form>
-        </div>
+        </section>
+    </main>
 
-
-
-    </div>
-
-    <div id="footer">
-        <div id="country">
-            Brazil
-        </div>
-        <div id="down-footer">
-            <div id="left-footer">
-                <div class="foot-link">
-                    About
-                </div>
-                <div class="foot-link">
-                    Advertising
-                </div>
-                <div class="foot-link">
-                    Business
-                </div>
-                <div class="foot-link">
-                    How Search works
-                </div>
+    <!-- =========================================================== -->
+    <!-- footer -->
+    <footer>
+        <div class="footer__container-top">Brazil</div>
+        <div class="footer__container-bottom">
+            <div class="footer__container-left">
+                <a href=""></a>
+                <a class="footer__link text" href="#">About</a>
+                <a class="footer__link text" href="#">Advertising</a>
+                <a class="footer__link text" href="#">Business</a>
+                <a class="footer__link text" href="#">How Search works</a>
             </div>
-            <div id="right-footer">
-                <div class="foot-link">
-                    Privacy
-                </div>
-                <div class="foot-link">
-                    Terms
-                </div>
-                <div class="foot-link">
-                    settings
-                </div>
+            <div class="footer__container-right">
+                <a class="footer__link text" href="#">Privacy</a>
+                <a class="footer__link text" href="#">Terms</a>
+                <a class="footer__link text" href="#">settings</a>
             </div>
         </div>
-    </div>
+    </footer>
 </body>
 
 </html>

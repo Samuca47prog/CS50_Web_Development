@@ -51,11 +51,13 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 100px;
 }
 
 .main__logo-img {
-    width: 450px;
-    height: 170px;
+    width: 370px;
+    height: 120px;
 }
 
 .main__search{
@@ -68,8 +70,8 @@ main {
 }
 
 .main__searchbar {
-    width: 600px;
-    height: 35px;
+    width: 558px;
+    height: 25px;
 
     border-radius: 32px;
     border: 2px solid #d4d4d4;
