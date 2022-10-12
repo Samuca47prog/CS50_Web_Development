@@ -1,0 +1,24 @@
+# Entry page
+- visit page via link /wiki/TITLE
+- test inexisting page
+
+# Index page
+- show links working
+
+# Search
+- search for page exactly name, go to it
+- search for part name, see list of entries
+- click in any link to go to the page
+
+# New Page
+- create new page, title and markdown content
+- save page
+- show page in index page
+- try an existing name
+
+# Edit Page
+- change something and save
+- redirected
+
+# Random page
+- show

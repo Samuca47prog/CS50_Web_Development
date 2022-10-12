@@ -33,6 +33,7 @@ def index(request):
     else:
         entries = util.list_entries()
         entries.remove("notFound")
+        entries.remove("pageNameError")
         return render(request, "encyclopedia/index.html", {
             "entries": entries,
             "form": QuerySearch()
@@ -43,7 +44,16 @@ def renderPage(request, name):
     entries = list(map(lambda x: x.lower(), util.list_entries()))
     if name not in entries:
         name = "notFound"
+        return renderError(request, name)
+
     return render(request, "encyclopedia/renderPage.html", {
+        "page": markdown.markdown(util.get_entry(name)),
+        "title": name,
+        "form": QuerySearch(),
+    })
+
+def renderError(request, name):
+    return render(request, "encyclopedia/renderError.html", {
         "page": markdown.markdown(util.get_entry(name)),
         "title": name,
         "form": QuerySearch(),
@@ -79,12 +89,10 @@ def createNewPage(request):
             title = form.cleaned_data["title"]
             body = form.cleaned_data["body"]
 
-            #title = re.sub("[\s'!@#$%¨&*+]","", title) # eliminate spaces
-
             entries = util.list_entries()
 
             if title in entries:
-                return renderPage(request, "pageNameError")
+                return renderError(request, "pageNameError")
             else:
                 # save new page
                 util.save_entry(title, body)
