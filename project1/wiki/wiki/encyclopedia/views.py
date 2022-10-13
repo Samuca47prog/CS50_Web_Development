@@ -63,6 +63,7 @@ def renderError(request, name):
 def queryResponse(request, q):
     entries = util.list_entries()
     entries.remove("notFound")
+    entries.remove("pageNameError")
 
     substring_entries = []
 
@@ -122,6 +123,7 @@ def editPage(request, name):
 def randomPage(request):
     entries = util.list_entries()
     entries.remove("notFound")
+    entries.remove("pageNameError")
 
     q = random.choice(entries)
 
