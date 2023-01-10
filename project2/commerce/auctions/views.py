@@ -61,3 +61,26 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+def create_listing(request):
+    if request.method == "POST":
+        title = request.POST["title"]
+        description = request.POST["description"]
+        first_bid = request.POST["first_bid"]
+        image_url = request.POST["image_url"]
+        category = request.POST["category"]
+
+
+        # # Attempt to create new Listing
+        # try:
+        #     user = User.objects.create_user(username, email, password)
+        #     user.save()
+        # except IntegrityError:
+        #     return render(request, "auctions/register.html", {
+        #         "message": "Username already taken."
+        #     })
+        return render(request, "auctions/create_listing.html", {
+            "message": image_url,
+        })
+    else:
+        return render(request, "auctions/create_listing.html")
