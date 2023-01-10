@@ -1,3 +1,7 @@
+# References
+
+- [Model Field Reference](https://docs.djangoproject.com/en/4.0/ref/models/fields/)
+
 
 # Pages
 
@@ -16,7 +20,7 @@
     Users will input:
     - title
     - description
-    - first bid
+    - start bid
     - Image URL
     - Category
 

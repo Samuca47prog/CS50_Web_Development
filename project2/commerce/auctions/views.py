@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User
+from .models import User, Listing
 
 
 def index(request):
@@ -66,21 +66,26 @@ def create_listing(request):
     if request.method == "POST":
         title = request.POST["title"]
         description = request.POST["description"]
-        first_bid = request.POST["first_bid"]
+        start_bid = request.POST["start_bid"]
         image_url = request.POST["image_url"]
         category = request.POST["category"]
 
 
-        # # Attempt to create new Listing
-        # try:
-        #     user = User.objects.create_user(username, email, password)
-        #     user.save()
-        # except IntegrityError:
-        #     return render(request, "auctions/register.html", {
-        #         "message": "Username already taken."
-        #     })
-        return render(request, "auctions/create_listing.html", {
-            "message": image_url,
-        })
+        # Attempt to create new Listing
+        try:
+            new_listing = Listing(  title=title,
+                                    description=description, 
+                                    start_bid=start_bid,
+                                    image_url=image_url,
+                                    category=category
+                                        )
+            new_listing.save()
+        except IntegrityError:
+            return render(request, "auctions/create_listing.html", {
+                "message": "unable to create listing"
+            })
+
+        return HttpResponseRedirect(reverse("index"))
+
     else:
         return render(request, "auctions/create_listing.html")
