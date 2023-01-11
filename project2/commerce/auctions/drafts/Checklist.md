@@ -1,7 +1,7 @@
 # References
 
 - [Model Field Reference](https://docs.djangoproject.com/en/4.0/ref/models/fields/)
-
+- [DateTimeField](https://www.geeksforgeeks.org/datetimefield-django-models/)
 
 # Pages
 

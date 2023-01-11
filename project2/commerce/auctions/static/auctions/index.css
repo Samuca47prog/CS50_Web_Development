@@ -43,3 +43,7 @@
     font-size: 1.4rem;
     font-weight: 500;
 }
+
+.index__listing-details .creation {
+    margin-top: 20px;
+}
