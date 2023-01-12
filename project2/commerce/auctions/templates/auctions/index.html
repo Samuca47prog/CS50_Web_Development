@@ -8,11 +8,17 @@
         <ul class="index__listings">
             {% for listing in listings %}
                 <li class="index__listing">
-                        <div class="index__image"><img src="{{ listing.image_url }}" alt="listing image"></div>
+                        <div class="index__image">
+                            <a href="{% url 'listing' listing_id=listing.id %}">
+                                <img src="{{ listing.image_url }}" alt="listing image">
+                            </a>
+                        </div>
                         <div class="index__details">
                             <ul class="index__listing-details">
-                                <li class="title">{{ listing.title }}</li>
-                                <li class="price">Price: ${{ listing.start_bid }}</li>
+                                <li class="title">
+                                    <a href="{% url 'listing' listing_id=listing.id %}">{{ listing.title }}</a>
+                                </li>
+                                <li class="price">Price: ${{ listing.start_bid|floatformat:'2' }}</li>
                                 <li class="creation">Created {{ listing.creation }}</li>
                             </ul>
                         </div>
@@ -22,7 +28,7 @@
 
     {% else %}
 
-        TODO
+        Sign in to see Listings
 
     {% endif %}
 {% endblock %}

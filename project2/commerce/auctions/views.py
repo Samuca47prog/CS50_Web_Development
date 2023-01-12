@@ -73,7 +73,7 @@ def create_listing(request):
         category = request.POST["category"]
 
 
-        # Attempt to create new Listing
+        # Create new Listing
         try:
             new_listing = Listing(  title=title,
                                     description=description, 
@@ -91,3 +91,9 @@ def create_listing(request):
 
     else:
         return render(request, "auctions/create_listing.html")
+
+def listing(request, listing_id):
+    listing = Listing.objects.get(pk=listing_id)
+    return render(request, "auctions/listing.html", {
+        "listing": listing
+    })

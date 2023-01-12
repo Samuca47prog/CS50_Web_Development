@@ -23,6 +23,7 @@
     - start bid
     - Image URL
     - Category
+      - field with select dropdown
 
 ## Listing page
 * Shows all informations about the listing
@@ -67,4 +68,12 @@
 
 ## class Comments
 
+## class Categories
+
 ## class Users
+
+
+# Alternative learnings
+
+## Reload CSS
+* Sometimes the CSS stops updating even after reloading the page. When that happens, press ctrl + F5.

@@ -34,10 +34,14 @@
     list-style-type: none;
 }
 
-.index__listing-details .title {
+.index__listing-details .title a{
     font-size: 2rem;
     font-weight: 700;
+
+    color: black;
+    text-decoration: none;    
 }
+
 
 .index__listing-details .price {
     font-size: 1.4rem;
