@@ -63,6 +63,10 @@
         - Image URL
         - Category
 
+
+        - creation
+        - creator
+
 ## class Bids
     -  Bids are the prices offered for the listing
 
@@ -72,6 +76,7 @@
 
 ## class Users
 
+---
 
 # Alternative learnings
 

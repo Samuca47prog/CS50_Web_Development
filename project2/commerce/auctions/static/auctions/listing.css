@@ -1,0 +1,62 @@
+.listing {
+    width: 100%;
+}
+
+.listing__watchlist {
+    display: inline-block;
+
+    padding: 0.5px 4px;
+    margin: 2px 0px;
+
+    color: whitesmoke;
+    background-color: rgb(119, 119, 119);
+    font-weight: 600;
+
+    border-radius: 4px;
+}
+
+.listing__image {
+    width: 800px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.listing__image img {
+    max-height: 500px;
+    max-width: 100%;
+
+    margin: 5px;
+}
+
+.listing__bids {
+    width: 100%;
+
+    margin: 20px 0px;
+}
+
+div.listing__bids-bid {
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+
+input.listing__bids-bid {
+    width: 100%;
+
+    padding: 3px 8px;
+
+    border: 2px solid rgb(161, 161, 161);
+    border-radius: 5px;
+}
+
+.listing__bids-submit {
+    padding: 5px 10px;
+
+    font-weight: 600;
+
+    border-radius: 4px;
+
+    background-color: #0D7BFF;
+    color: whitesmoke;;
+}
