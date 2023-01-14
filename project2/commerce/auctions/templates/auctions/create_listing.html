@@ -28,7 +28,11 @@
         </div>
         <!-- Category -->
         <div class="form-group">
-            <input class="form-control" type="text" name="category" placeholder="Category">
+            <select class="form-control" name="category">
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category }}</option>
+                {% endfor %}
+            </select> 
         </div>
         <!-- Submit -->
         <input class="btn btn-primary" type="submit" value="Create Listing">
