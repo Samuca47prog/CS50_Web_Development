@@ -71,6 +71,7 @@ def create_listing(request):
         start_bid = request.POST["start_bid"]
         image_url = request.POST["image_url"]
         category = Categories.objects.get(pk=int(request.POST["category"]))
+        user = User.objects.get(pk=int(request.user.id))
 
 
         # Create new Listing
@@ -79,7 +80,8 @@ def create_listing(request):
                                     description=description, 
                                     start_bid=start_bid,
                                     image_url=image_url,
-                                    category=category
+                                    category=category,
+                                    creator=user
                                         )
             new_listing.save()
         except IntegrityError:
