@@ -40,6 +40,9 @@
     - if user signed, allow to add only a higher bid
     - if user signed, allow to add comments
     - if current user is the listing creator, allow to close the auction
+      * show pop up of are you sure?
+    * [OK] if current user is the listing creator, allow to delete the auction
+      * show pop up of are you sure?
     - when auction is closed, show winner bid
     - when auction is closed and user is still in that page, show to him if he is the winner
 
@@ -53,7 +56,7 @@
 
     - [OK] clicking in any category should show listings on that category
     - [OK] create new categories
-    - allow creators to delete categories
+    * allow creators to delete categories
 
 ---
 

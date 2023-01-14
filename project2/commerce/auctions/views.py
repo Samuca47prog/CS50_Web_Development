@@ -141,3 +141,6 @@ def delete_auction(request, listing_id):
         "header": "Active Listings",
         "message": "listing deleted: " + listing_name
     })
+
+def watchlist(request):
+        return render(request, "auctions/index.html")
