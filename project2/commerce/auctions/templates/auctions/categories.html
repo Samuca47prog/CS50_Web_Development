@@ -5,16 +5,30 @@
     {% if user.is_authenticated %}
 
         <section>
+            <div>
+                <h2>Categories</h2>
+                <ul class="categories">
+                    {% for category in categories %}
+                    <li class="category__item">
+                        <a href="{% url 'category' category_id=category.id %}">{{ category.id }}. {{ category.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-            <h2>Categories</h2>
+            <div>
+                <h2>Create new Category</h2>
+                {% if message %}
+                    <div>{{ message }}</div>
+                {% endif %}
+                <form action="{% url 'categories' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="category">
+                    <input type="submit" value="Create">
+                </form>
+            </div>
 
-            <ul class="categories">
-                {% for category in categories %}
-                <li class="category__item">
-                    <a href="{% url 'category' category_id=category.id %}">{{ category.id }}. {{ category.name }}</a>
-                </li>
-                {% endfor %}
-            </ul>
+
         </section>
 
     {% else %}

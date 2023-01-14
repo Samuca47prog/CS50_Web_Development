@@ -52,6 +52,7 @@
 * shows currently categories
 
     - [OK] clicking in any category should show listings on that category
+    - [OK] create new categories
     - allow creators to delete categories
 
 ---

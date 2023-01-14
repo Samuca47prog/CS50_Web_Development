@@ -104,16 +104,28 @@ def listing(request, listing_id):
     })
 
 def categories(request):
+    if request.method == 'POST':
+        new_category = request.POST["category"]
 
-    return render(request, "auctions/categories.html", {
-        "categories": Categories.objects.all()
-    })
+        # Create new Category
+        try:
+            category = Categories(name=new_category)
+            category.save()
+        except:
+            return render(request, "auctions/create_categories.html", {
+                "message": "unable to create category"
+            })
+        return HttpResponseRedirect(reverse("categories"))
+    else: 
+        return render(request, "auctions/categories.html", {
+            "categories": Categories.objects.all()
+        })
 
 
 def category(request, category_id):
-    category_name = Categories.objects.get(id=int(category_id))
+    category = Categories.objects.get(id=int(category_id))
 
     return render(request, "auctions/index.html", {
-        "listings": Listing.objects.filter(category=category_name),
-        "header": "Listings on category: " + str(category_name)
+        "listings": Listing.objects.filter(category=category),
+        "header": "Listings on category: " + str(category.name)
     })

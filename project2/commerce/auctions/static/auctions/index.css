@@ -4,6 +4,10 @@
     width: 100%;
 }
 
+li.index__listing {
+    padding: 10px 0px;
+}
+
 .index__listing {
     display: flex;
 
