@@ -15,9 +15,8 @@ class Listing(models.Model):
     title = models.CharField(max_length=64)
     description = models.TextField(max_length=128)
     start_bid = models.DecimalField(max_digits=10, decimal_places=2)
-    image_url = models.URLField(max_length=300)
-    # will be a foregnKey
-    category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="type")
+    image_url = models.URLField(max_length=300, blank=True, null=True)
+    category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="type", blank=True, null=True, default="No Category")
     creation = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="auctioneer")
 

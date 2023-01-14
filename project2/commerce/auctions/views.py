@@ -9,7 +9,8 @@ from .models import User, Listing, Categories
 
 def index(request):
     return render(request, "auctions/index.html", {
-        "listings": Listing.objects.all()
+        "listings": Listing.objects.all(),
+        "header": "Active Listings"
     })
 
 
@@ -84,7 +85,7 @@ def create_listing(request):
                                     creator=user
                                         )
             new_listing.save()
-        except IntegrityError:
+        except:
             return render(request, "auctions/create_listing.html", {
                 "message": "unable to create listing"
             })
@@ -100,4 +101,17 @@ def listing(request, listing_id):
     listing = Listing.objects.get(pk=listing_id)
     return render(request, "auctions/listing.html", {
         "listing": listing
+    })
+
+def categories(request):
+
+    return render(request, "auctions/categories.html")
+
+
+def category(request, category_id):
+    category_name = Categories.objects.get(id=int(category_id))
+
+    return render(request, "auctions/index.html", {
+        "listings": Listing.objects.filter(category=category_name),
+        "header": "Listings on " + str(category_name) + " Category"
     })

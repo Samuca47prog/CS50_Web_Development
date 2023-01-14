@@ -9,21 +9,27 @@
 * Shows current active auction listings
 
     each listing must be showing at leat:
-    - title
-    - description
-    - current price
-    - photo
+    - [OK] title
+    - [OK] description
+    - [OK] current price
+    - [OK] photo
+
+
+    - [OK] creator
+    - [OK] creation
 
 ## Create New Listing page
 * This page will be a form that will add a listing in the site existing Listings
 
     Users will input:
-    - title
-    - description
-    - start bid
-    - Image URL
-    - Category
-      - field with select dropdown
+    - [OK] title
+    - [OK] description
+    - [OK] start bid
+    - [OK] Image URL
+      - [OK] can be null
+    - [OK] Category
+      - [OK] field with select dropdown
+      - can be null
 
 ## Listing page
 * Shows all informations about the listing

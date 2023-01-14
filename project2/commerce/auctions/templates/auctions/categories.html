@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Categories</h2>
+
+    {% if user.is_authenticated %}
+
+        <section>
+            <a href="{% url 'category' category_id=1 %}">Clothes</a>
+            <a href="{% url 'category' category_id=2 %}">acessory</a>
+        </section>
+
+    {% else %}
+
+        Sign in to see Categories
+
+    {% endif %}
+{% endblock %}
