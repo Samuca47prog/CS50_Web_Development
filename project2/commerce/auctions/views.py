@@ -129,3 +129,15 @@ def category(request, category_id):
         "listings": Listing.objects.filter(category=category),
         "header": "Listings on category: " + str(category.name)
     })
+
+
+def delete_auction(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    listing_name = listing.title
+    listing.delete()
+
+    return render(request, "auctions/index.html", {
+        "listings": Listing.objects.all(),
+        "header": "Active Listings",
+        "message": "listing deleted: " + listing_name
+    })

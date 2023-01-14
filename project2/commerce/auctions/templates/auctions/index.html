@@ -5,6 +5,10 @@
 
     {% if user.is_authenticated %}
 
+        {% if message %}
+            <div>{{ message }}</div>
+        {% endif %}
+
         <ul class="index__listings">
             {% for listing in listings %}
                 <li class="index__listing">
@@ -24,6 +28,8 @@
                             </ul>
                         </div>
                 </li>
+            {% empty %}
+                <div>No Listings.</div>
             {% endfor %}
         </ul>
 

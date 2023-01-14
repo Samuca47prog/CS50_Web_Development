@@ -6,7 +6,13 @@
 
         <div class="listing">
             <h2 class="listing__title">Listing: {{ listing.title  }}</h2>
-            <div class="listing__watchlist">Watchlist</div>
+            <div class="listing__nav">
+                <a class="listing__nav-item watchlist" href="#">Watchlist</a>
+                {% if user.username == listing.creator.username %}
+                    <a class="listing__nav-item close-auction" href="#">Close Auction</a>
+                    <a class="listing__nav-item delete-auction" href="{% url 'delete-auction' listing_id=listing.id %}">Delete Auction</a>
+                {% endif %}
+            </div>
             <div class="listing__image">
                 <img src="{{ listing.image_url }}" alt="Listing Image">
             </div>

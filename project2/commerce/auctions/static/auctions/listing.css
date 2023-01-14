@@ -2,9 +2,11 @@
     width: 100%;
 }
 
-.listing__watchlist {
+.listing__nav {
     display: inline-block;
+}
 
+.listing__nav-item {
     padding: 0.5px 4px;
     margin: 2px 0px;
 
@@ -13,6 +15,13 @@
     font-weight: 600;
 
     border-radius: 4px;
+}
+
+.listing__nav .delete-auction {
+    background-color: rgb(255, 100, 100);
+    color: whitesmoke;;
+
+    text-decoration: none;
 }
 
 .listing__image {
