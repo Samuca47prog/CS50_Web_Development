@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User, Listing, Categories
+from .models import User, Listing, Categories, Watchlist
 
 
 def index(request):
@@ -143,4 +143,7 @@ def delete_auction(request, listing_id):
     })
 
 def watchlist(request):
-        return render(request, "auctions/index.html")
+        return render(request, "auctions/index.html", {
+            "listings": Listing.objects.all(),
+            "header": "Watchlist"
+        })

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User, Listing, Categories
+from .models import User, Listing, Categories, Watchlist
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
@@ -12,6 +12,10 @@ class ListingAdmin(admin.ModelAdmin):
 class CategoriesAdmin(admin.ModelAdmin):
     list_display = ("id", "name")
 
+class WatchlistAdmin(admin.ModelAdmin):
+    list_display = ("id", "user")
+
 admin.site.register(User, UserAdmin)
 admin.site.register(Listing, ListingAdmin)
 admin.site.register(Categories, CategoriesAdmin)
+admin.site.register(Watchlist, WatchlistAdmin)

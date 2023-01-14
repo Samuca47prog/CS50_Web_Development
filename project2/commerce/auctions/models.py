@@ -22,3 +22,7 @@ class Listing(models.Model):
 
     def __str__(self):
         return f"{self.title} | start price: ${self.start_bid}"
+
+class Watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="lover")
+    watchlist = models.ManyToManyField(Listing, blank=True, related_name="favorited")

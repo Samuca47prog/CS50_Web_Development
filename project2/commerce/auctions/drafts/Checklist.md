@@ -85,7 +85,12 @@
 
 ## class Categories
 
+    - name
+    - creator
+
 ## class Users
+
+    - watchlist
 
 ---
 
