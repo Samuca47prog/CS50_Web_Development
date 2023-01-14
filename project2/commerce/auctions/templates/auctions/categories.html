@@ -1,13 +1,20 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
-    <h2>Categories</h2>
 
     {% if user.is_authenticated %}
 
         <section>
-            <a href="{% url 'category' category_id=1 %}">Clothes</a>
-            <a href="{% url 'category' category_id=2 %}">acessory</a>
+
+            <h2>Categories</h2>
+
+            <ul class="categories">
+                {% for category in categories %}
+                <li class="category__item">
+                    <a href="{% url 'category' category_id=category.id %}">{{ category.id }}. {{ category.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </section>
 
     {% else %}

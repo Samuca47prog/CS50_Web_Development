@@ -105,7 +105,9 @@ def listing(request, listing_id):
 
 def categories(request):
 
-    return render(request, "auctions/categories.html")
+    return render(request, "auctions/categories.html", {
+        "categories": Categories.objects.all()
+    })
 
 
 def category(request, category_id):
@@ -113,5 +115,5 @@ def category(request, category_id):
 
     return render(request, "auctions/index.html", {
         "listings": Listing.objects.filter(category=category_name),
-        "header": "Listings on " + str(category_name) + " Category"
+        "header": "Listings on category: " + str(category_name)
     })

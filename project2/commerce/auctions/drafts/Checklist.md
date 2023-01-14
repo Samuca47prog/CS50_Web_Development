@@ -51,7 +51,8 @@
 ## Categories page
 * shows currently categories
 
-    clicking in any category should show listings on that category
+    - [OK] clicking in any category should show listings on that category
+    - allow creators to delete categories
 
 ---
 
