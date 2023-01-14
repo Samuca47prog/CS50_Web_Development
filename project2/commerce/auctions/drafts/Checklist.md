@@ -29,7 +29,7 @@
 * Shows all informations about the listing
 
     page interactions:
-    - attach page when user click an listing image
+    - [OK] attach page when user click an listing image
     - if user signed, allow to add/remove to watch list
     - if user signed, allow to add only a higher bid
     - if user signed, allow to add comments
