@@ -151,3 +151,25 @@ def watchlist(request):
             "listings": Listing.objects.all(),
             "header": "Watchlist"
         })
+
+def add_bid(request, listing_id):
+    listing = Listing.objects.get(pk=int(listing_id))
+
+    if request.method == "POST":
+        user_bid = request.POST["bid"]
+        user = User.objects.get(pk=int(request.user.id))
+        bid = Bid(author=user, bid=float(user_bid))
+        bid.save()
+
+        if float(bid.bid) > float(listing.bid.bid):
+            listing.bid = bid
+
+        else:
+            return render(request, "auctions/listing.html", {
+                "listing": listing,
+                "error": "Your Bid must be bigger than actual bid"
+            })
+
+    return render(request, "auctions/listing.html", {
+        "listing": listing
+    })

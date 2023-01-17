@@ -18,13 +18,18 @@
             </div>
             <div class="listing__creator">Created by Samuel</div>
 
-            <form class="listing__bids" action="#">
-                <h3>${{ listing.bid.bid }}</h3>
+            <form class="listing__bids" action="{% url 'add_bid' listing_id=listing.id %}" method="post">
+                {% csrf_token %}
+                <h3>${{ listing.bid.bid|floatformat:'2' }}</h3>
+                <div class="listing__bid-author">Placed by {{ listing.bid.author.username }}</div>
                 <div class="listing__bids-bid">
-                    <div class="listing__bids-info">2 bid(s) so far.</div>
+                    <div class="listing__bids-info">{{ listing.bid_count }} bid(s) so far.</div>
                     <input class="listing__bids-bid" type="text" name="bid" placeholder="Bid">
+                    {% if error %}
+                        <div>{{ error }}</div>
+                    {% endif %}
                 </div>
-                <submit class="listing__bids-submit">Place Bid</submit>
+                <input type="submit" class="listing__bids-submit" value="Place Bid"></input>
             </form>
 
             <div class="listing__details">
