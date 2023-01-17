@@ -81,6 +81,9 @@
 ## class Bids
     -  Bids are the prices offered for the listing
 
+    - user
+    - bid
+
 ## class Comments
 
 ## class Categories

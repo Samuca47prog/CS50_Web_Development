@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User, Listing, Categories, Watchlist
+from .models import User, Listing, Categories, Watchlist, Bid
 
 
 def index(request):
@@ -74,6 +74,8 @@ def create_listing(request):
         category = Categories.objects.get(pk=int(request.POST["category"]))
         user = User.objects.get(pk=int(request.user.id))
 
+        bid = Bid(author=user, bid=start_bid)
+        bid.save()
 
         # Create new Listing
         try:
@@ -82,12 +84,14 @@ def create_listing(request):
                                     start_bid=start_bid,
                                     image_url=image_url,
                                     category=category,
-                                    creator=user
+                                    creator=user,
+                                    bid=bid
                                         )
             new_listing.save()
-        except:
+        except IntegrityError:
             return render(request, "auctions/create_listing.html", {
-                "message": "unable to create listing"
+                "message": "unable to create listing",
+                "categories": Categories.objects.all()
             })
 
         return HttpResponseRedirect(reverse("index"))
