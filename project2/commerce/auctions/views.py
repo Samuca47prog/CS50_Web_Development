@@ -159,10 +159,10 @@ def add_bid(request, listing_id):
         user_bid = request.POST["bid"]
         user = User.objects.get(pk=int(request.user.id))
         bid = Bid(author=user, bid=float(user_bid))
-        bid.save()
 
         if bid.bid > listing.bid.bid:
             listing.bid = bid
+            bid.save()
             listing.save()
             return render(request, "auctions/listing.html", {
                 "listing": listing,
