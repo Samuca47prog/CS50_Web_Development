@@ -22,7 +22,7 @@
                                 <li class="title">
                                     <a href="{% url 'listing' listing_id=listing.id %}">{{ listing.title }}</a>
                                 </li>
-                                <li class="price">Price: ${{ listing.start_bid|floatformat:'2' }}</li>
+                                <li class="price">Price: ${{ listing.bid.bid|floatformat:'2' }}</li>
                                 <li class="creator">Created by {{ listing.creator.username }}</li>
                                 <li class="creation">Created at {{ listing.creation }}</li>
                             </ul>
