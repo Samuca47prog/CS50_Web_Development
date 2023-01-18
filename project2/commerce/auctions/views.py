@@ -86,7 +86,7 @@ def create_listing(request):
                                     category=category,
                                     creator=user,
                                     bid=bid
-                                        )
+            )
             new_listing.save()
         except IntegrityError:
             return render(request, "auctions/create_listing.html", {
@@ -161,13 +161,17 @@ def add_bid(request, listing_id):
         bid = Bid(author=user, bid=float(user_bid))
         bid.save()
 
-        if float(bid.bid) > float(listing.bid.bid):
+        if bid.bid > listing.bid.bid:
             listing.bid = bid
-
+            listing.save()
+            return render(request, "auctions/listing.html", {
+                "listing": listing,
+                "message": "You have placed your bid!"
+            })
         else:
             return render(request, "auctions/listing.html", {
                 "listing": listing,
-                "error": "Your Bid must be bigger than actual bid"
+                "message": "Your Bid must be bigger than $" + str(listing.bid.bid) + ", the actual bid"
             })
 
     return render(request, "auctions/listing.html", {

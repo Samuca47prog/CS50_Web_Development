@@ -25,8 +25,8 @@
                 <div class="listing__bids-bid">
                     <div class="listing__bids-info">{{ listing.bid_count }} bid(s) so far.</div>
                     <input class="listing__bids-bid" type="text" name="bid" placeholder="Bid">
-                    {% if error %}
-                        <div>{{ error }}</div>
+                    {% if message %}
+                        <div>{{ message }}</div>
                     {% endif %}
                 </div>
                 <input type="submit" class="listing__bids-submit" value="Place Bid"></input>
@@ -38,6 +38,10 @@
                     <li>Listed by: {{ listing.creator.username }}</li>
                     <li>Category: {{ listing.category }}</li>
                 </ul>
+            </div>
+
+            <div>
+                <br> {{ bid }} 
             </div>
         </div>
        

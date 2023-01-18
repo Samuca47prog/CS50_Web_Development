@@ -2,6 +2,14 @@
 
 - [Model Field Reference](https://docs.djangoproject.com/en/4.0/ref/models/fields/)
 - [DateTimeField](https://www.geeksforgeeks.org/datetimefield-django-models/)
+- [Django Tutorial #27 - Foreign Keys](https://www.youtube.com/watch?v=zJWhizYFKP0)
+- [49 - Basic Data Connection with Foreign Keys - Python & Django 3.2 Tutorial Series](https://www.youtube.com/watch?v=3VTeia-AoLo)
+- [Using Multiple Database Tables With Django - Django Wednesdays #4](https://www.youtube.com/watch?v=z5e_8FgKZig)
+- [Fetch Data From a Database And Output To A Webpage - Django Wednesdays #5](https://www.youtube.com/watch?v=H3joYTIRqKk)
+- [How To Modify The Django Admin Area - Django Wednesdays #6](https://www.youtube.com/watch?v=_7Fi9dpw-ew)
+- [How To Add Database Forms To A Web Page - Django Wednesdays #7](https://www.youtube.com/watch?v=CVEKe39VFu8)
+
+- [Adding Extra Fields On Many-To-Many Relationships in Django](https://www.youtube.com/watch?v=-HuTlmEVOgU&t=787s)
 
 # Pages
 

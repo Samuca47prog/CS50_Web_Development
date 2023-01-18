@@ -29,7 +29,7 @@ class Listing(models.Model):
     category = models.ForeignKey(Categories, on_delete=models.CASCADE, related_name="type", blank=True, null=True, default="No Category")
     creation = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="auctioneer")
-    bid = models.ForeignKey(Bid, on_delete=models.CASCADE, related_name="winner")
+    bid = models.ForeignKey(Bid, blank=True, null=True, on_delete=models.SET_NULL, related_name="offers")
 
     def __str__(self):
         return f"{self.title} | price: ${self.bid}"

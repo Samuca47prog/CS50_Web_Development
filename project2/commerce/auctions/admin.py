@@ -7,7 +7,7 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ("id", "username")
 
 class ListingAdmin(admin.ModelAdmin):
-    list_display = ("id", "title", "bid", "start_bid", "creation", "creator")
+    list_display = ("id", "title", "start_bid", "creation", "creator")
 
 class CategoriesAdmin(admin.ModelAdmin):
     list_display = ("id", "name")
@@ -16,7 +16,7 @@ class WatchlistAdmin(admin.ModelAdmin):
     list_display = ("id", "user")
 
 class BidAdmin(admin.ModelAdmin):
-    list_display = ("id", "author", "bid")
+    list_display = ("id", "author")
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Listing, ListingAdmin)
