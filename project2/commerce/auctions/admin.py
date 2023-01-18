@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import User, Listing, Categories, Watchlist, Bid
+from .models import User, Listing, Categories, Watchlist, Bid, Comments
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
@@ -23,3 +23,4 @@ admin.site.register(Listing, ListingAdmin)
 admin.site.register(Categories, CategoriesAdmin)
 admin.site.register(Watchlist, WatchlistAdmin)
 admin.site.register(Bid, BidAdmin)
+admin.site.register(Comments)

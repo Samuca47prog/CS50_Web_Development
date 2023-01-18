@@ -104,7 +104,8 @@ def create_listing(request):
 def listing(request, listing_id):
     listing = Listing.objects.get(pk=listing_id)
     return render(request, "auctions/listing.html", {
-        "listing": listing
+        "listing": listing,
+        "comments": listing.comments.all().order_by("-creation")
     })
 
 def categories(request):
@@ -162,6 +163,7 @@ def add_bid(request, listing_id):
 
         if bid.bid > listing.bid.bid:
             listing.bid = bid
+            listing.bids_count = listing.bids_count + 1
             bid.save()
             listing.save()
             return render(request, "auctions/listing.html", {

@@ -4,7 +4,7 @@
     
     {% if user.is_authenticated %}
 
-        <div class="listing">
+        <section class="listing">
             <h2 class="listing__title">Listing: {{ listing.title  }}</h2>
             <div class="listing__nav">
                 <a class="listing__nav-item watchlist" href="#">Watchlist</a>
@@ -23,7 +23,7 @@
                 <h3>${{ listing.bid.bid|floatformat:'2' }}</h3>
                 <div class="listing__bid-author">Placed by {{ listing.bid.author.username }}</div>
                 <div class="listing__bids-bid">
-                    <div class="listing__bids-info">{{ listing.bid_count }} bid(s) so far.</div>
+                    <div class="listing__bids-info">{{ listing.bids_count }} bid(s) so far.</div>
                     <input class="listing__bids-bid" type="text" name="bid" placeholder="Bid">
                     {% if message %}
                         <div>{{ message }}</div>
@@ -39,11 +39,29 @@
                     <li>Category: {{ listing.category }}</li>
                 </ul>
             </div>
+        </section>
 
-            <div>
-                <br> {{ bid }} 
-            </div>
-        </div>
+        <section class="comments">
+            <h2 class="comments__hearder">Comments</h2>
+            <form class="comments__form" action="">
+                <h4>Write your comment</h4>
+                <div class="comments__form-textarea">
+                    <textarea required class="form-control" name="new_comment" placeholder="Comment..."></textarea>
+                </div>
+                <input class="comments__form-submit" type="submit" value="submit">
+            </form>
+            <ul>
+                {% for comment in comments %}
+                <li>
+                    <div class="comments__comment-author">{{ comment.author }}</div>
+                    <div class="comments__comment-date">at {{ comment.creation }}</div>
+                    <div class="comments__comment-comment">{{ comment.comment }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+            
+        </section>
+
        
     {% else %}
 

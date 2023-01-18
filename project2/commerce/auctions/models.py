@@ -21,6 +21,14 @@ class Bid(models.Model):
     def __str__(self):
         return f"{self.author}: ${self.bid}"
 
+class Comments(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="writter")
+    comment = models.TextField(max_length=256)
+    creation = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.author} at {self.creation}"
+
 class Listing(models.Model):
     title = models.CharField(max_length=64)
     description = models.TextField(max_length=128)
@@ -30,6 +38,8 @@ class Listing(models.Model):
     creation = models.DateTimeField(auto_now_add=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name="auctioneer")
     bid = models.ForeignKey(Bid, blank=True, null=True, on_delete=models.SET_NULL, related_name="offers")
+    comments = models.ManyToManyField(Comments, blank=True, related_name="listing")
+    bids_count = models.IntegerField(default=1)
 
     def __str__(self):
         return f"{self.title} | price: ${self.bid}"
