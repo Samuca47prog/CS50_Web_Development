@@ -39,8 +39,10 @@
                     <input type="submit" class="listing__bids-submit" value="Place Bid"></input>
                 </form>
             {% else %}
-                <div>Auction winner: {{listing.bid.author}}</div>
-                <div>${{listing.bid.bid}}</div>
+            <section class="closed">
+                <div class="closed__winner">Auction winner: {{listing.bid.author}}</div>
+                <div class="closed__price">${{listing.bid.bid}}</div>
+            </section>
             {% endif %}
 
             <div class="listing__details">

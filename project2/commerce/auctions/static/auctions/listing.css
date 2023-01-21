@@ -52,6 +52,8 @@
     margin: 5px;
 }
 
+/* bids form */
+
 .listing__bids {
     width: 100%;
 
@@ -86,6 +88,17 @@ input.listing__bids-bid {
     background-color: #0D7BFF;
     color: whitesmoke;
 }
+
+/* auction closed */
+
+.closed {
+    margin: 4rem;
+
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+
 
 /* Comments */
 
