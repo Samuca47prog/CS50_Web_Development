@@ -103,9 +103,19 @@ def create_listing(request):
 
 def listing(request, listing_id):
     listing = Listing.objects.get(pk=listing_id)
+
+    user = User.objects.get(pk=int(request.user.id))
+    user_whatlist = user.favorites.all()
+    if listing in user_whatlist:
+        in_watchlist = True
+    else:
+        in_watchlist = False
+
+
     return render(request, "auctions/listing.html", {
         "listing": listing,
-        "comments": listing.comments.all().order_by("-creation")
+        "comments": listing.comments.all().order_by("-creation"),
+        "in_watchlist": in_watchlist
     })
 
 def categories(request):
@@ -147,15 +157,35 @@ def delete_auction(request, listing_id):
         "message": "listing deleted: " + listing_name
     })
 
+
+
+
+
 def watchlist(request):
     user = User.objects.get(pk=int(request.user.id))
-
     user_whatlist = user.favorites.all()
 
     return render(request, "auctions/index.html", {
         "listings": user_whatlist,
         "header": "Watchlist"
     })
+
+def add_to_watchlist(request, listing_id):
+    user = User.objects.get(pk=int(request.user.id))
+    listing = Listing.objects.get(id=listing_id)
+    user.favorites.add(listing)
+
+    return HttpResponseRedirect(reverse("watchlist"))
+
+def remove_from_watchlist(request, listing_id):
+    user = User.objects.get(pk=int(request.user.id))
+    listing = Listing.objects.get(id=listing_id)
+    user.favorites.remove(listing)
+
+    return HttpResponseRedirect(reverse("watchlist"))
+
+
+
 
 
 def add_bid(request, listing_id):

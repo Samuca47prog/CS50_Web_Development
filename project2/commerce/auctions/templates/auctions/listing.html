@@ -7,7 +7,11 @@
         <section class="listing">
             <h2 class="listing__title">Listing: {{ listing.title  }}</h2>
             <div class="listing__nav">
-                <a class="listing__nav-item watchlist" href="#">Watchlist</a>
+                {% if in_watchlist %}
+                    <a class="listing__nav-item remove" href="{% url 'remove_from_watchlist' listing_id=listing.id %}">Watchlisted</a>
+                {% else %}
+                    <a class="listing__nav-item watchlist" href="{% url 'add_to_watchlist' listing_id=listing.id %}">add to Watchlist</a>
+                {% endif %}
                 {% if user.username == listing.creator.username %}
                     <a class="listing__nav-item close-auction" href="#">Close Auction</a>
                     <a class="listing__nav-item delete-auction" href="{% url 'delete-auction' listing_id=listing.id %}">Delete Auction</a>

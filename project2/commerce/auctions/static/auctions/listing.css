@@ -24,6 +24,19 @@
     text-decoration: none;
 }
 
+.watchlist {
+    background-color: #FFFFFF;
+    color: rgb(119, 119, 119);
+
+    border: 2px solid rgb(119, 119, 119);
+}
+
+.remove {
+    background-color: rgb(119, 119, 119);
+    color: whitesmoke;
+}
+
+
 .listing__image {
     width: 800px;
 
