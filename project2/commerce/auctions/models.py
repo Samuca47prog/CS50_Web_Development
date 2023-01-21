@@ -41,6 +41,7 @@ class Listing(models.Model):
     comments = models.ManyToManyField(Comments, blank=True, related_name="listing")
     bids_count = models.IntegerField(default=1)
     watchlist = models.ManyToManyField(User, blank=True, null=True, related_name="favorites")
+    activated = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.title} | price: ${self.bid}"

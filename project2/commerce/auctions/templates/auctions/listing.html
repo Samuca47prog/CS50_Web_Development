@@ -13,7 +13,9 @@
                     <a class="listing__nav-item watchlist" href="{% url 'add_to_watchlist' listing_id=listing.id %}">add to Watchlist</a>
                 {% endif %}
                 {% if user.username == listing.creator.username %}
-                    <a class="listing__nav-item close-auction" href="#">Close Auction</a>
+                    {% if is_activated %}
+                        <a class="listing__nav-item close-auction" href="{% url 'set_desactivated' listing_id=listing.id %}">Close Auction</a>
+                    {% endif %}
                     <a class="listing__nav-item delete-auction" href="{% url 'delete-auction' listing_id=listing.id %}">Delete Auction</a>
                 {% endif %}
             </div>
@@ -22,19 +24,24 @@
             </div>
             <div class="listing__creator">Created by Samuel</div>
 
-            <form class="listing__bids" action="{% url 'add_bid' listing_id=listing.id %}" method="post">
-                {% csrf_token %}
-                <h3>${{ listing.bid.bid|floatformat:'2' }}</h3>
-                <div class="listing__bid-author">Placed by {{ listing.bid.author.username }}</div>
-                <div class="listing__bids-bid">
-                    <div class="listing__bids-info">{{ listing.bids_count }} bid(s) so far.</div>
-                    <input class="listing__bids-bid" type="text" name="bid" placeholder="Bid">
-                    {% if message %}
-                        <div>{{ message }}</div>
-                    {% endif %}
-                </div>
-                <input type="submit" class="listing__bids-submit" value="Place Bid"></input>
-            </form>
+            {% if is_activated %}
+                <form class="listing__bids" action="{% url 'add_bid' listing_id=listing.id %}" method="post">
+                    {% csrf_token %}
+                    <h3>${{ listing.bid.bid|floatformat:'2' }}</h3>
+                    <div class="listing__bid-author">Placed by {{ listing.bid.author.username }}</div>
+                    <div class="listing__bids-bid">
+                        <div class="listing__bids-info">{{ listing.bids_count }} bid(s) so far.</div>
+                        <input class="listing__bids-bid" type="text" name="bid" placeholder="Bid">
+                        {% if message %}
+                            <div>{{ message }}</div>
+                        {% endif %}
+                    </div>
+                    <input type="submit" class="listing__bids-submit" value="Place Bid"></input>
+                </form>
+            {% else %}
+                <div>Auction winner: {{listing.bid.author}}</div>
+                <div>${{listing.bid.bid}}</div>
+            {% endif %}
 
             <div class="listing__details">
                 <h4 class="listing__details-header">Details</h4>

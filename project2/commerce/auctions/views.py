@@ -101,6 +101,8 @@ def create_listing(request):
             "categories": Categories.objects.all()
         })
 
+
+
 def listing(request, listing_id):
     listing = Listing.objects.get(pk=listing_id)
 
@@ -115,8 +117,12 @@ def listing(request, listing_id):
     return render(request, "auctions/listing.html", {
         "listing": listing,
         "comments": listing.comments.all().order_by("-creation"),
-        "in_watchlist": in_watchlist
+        "in_watchlist": in_watchlist,
+        "is_activated": listing.activated
     })
+
+
+
 
 def categories(request):
     if request.method == 'POST':
@@ -201,19 +207,31 @@ def add_bid(request, listing_id):
             listing.bids_count = listing.bids_count + 1
             bid.save()
             listing.save()
+
+            user = User.objects.get(pk=int(request.user.id))
+            user_whatlist = user.favorites.all()
+            if listing in user_whatlist:
+                in_watchlist = True
+            else:
+                in_watchlist = False
+
             return render(request, "auctions/listing.html", {
                 "listing": listing,
-                "message": "You have placed your bid!"
+                "comments": listing.comments.all().order_by("-creation"),
+                "message": "You have placed your bid!",
+                "in_watchlist": in_watchlist,
+                "is_activated": listing.activated
             })
         else:
             return render(request, "auctions/listing.html", {
                 "listing": listing,
-                "message": "Your Bid must be bigger than $" + str(listing.bid.bid) + ", the actual bid"
+                "comments": listing.comments.all().order_by("-creation"),
+                "message": "Your Bid must be bigger than $" + str(listing.bid.bid) + ", the actual bid",
+                "in_watchlist": in_watchlist,
+                "is_activated": listing.activated
             })
 
-    return render(request, "auctions/listing.html", {
-        "listing": listing
-    })
+    return listing(request, listing_id)
 
 def add_comment(request, listing_id):
     listing = Listing.objects.get(pk=listing_id)
@@ -227,7 +245,13 @@ def add_comment(request, listing_id):
         comment.listing.add(listing)
 
 
-    return render(request, "auctions/listing.html", {
-        "listing": listing,
-        "comments": listing.comments.all().order_by("-creation")
-    })
+    return listing(request, listing_id)
+
+
+def set_desactivated(request, listing_id):
+    actual_listing = Listing.objects.get(pk=listing_id)
+
+    actual_listing.activated = False
+    actual_listing.save()
+
+    return listing(request, listing_id)
