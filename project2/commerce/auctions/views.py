@@ -4,12 +4,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User, Listing, Categories, Watchlist, Bid, Comments
+from .models import User, Listing, Categories, Bid, Comments
 
 
 def index(request):
     return render(request, "auctions/index.html", {
-        "listings": Listing.objects.all(),
+        "listings": Listing.objects.all().order_by("-creation"),
         "header": "Active Listings"
     })
 
@@ -148,10 +148,15 @@ def delete_auction(request, listing_id):
     })
 
 def watchlist(request):
-        return render(request, "auctions/index.html", {
-            "listings": Listing.objects.all(),
-            "header": "Watchlist"
-        })
+    user = User.objects.get(pk=int(request.user.id))
+
+    user_whatlist = user.favorites.all()
+
+    return render(request, "auctions/index.html", {
+        "listings": user_whatlist,
+        "header": "Watchlist"
+    })
+
 
 def add_bid(request, listing_id):
     listing = Listing.objects.get(pk=int(listing_id))

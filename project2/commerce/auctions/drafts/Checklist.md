@@ -46,7 +46,7 @@
     - [OK] attach page when user click an listing image
     - if user signed, allow to add/remove to watch list
     - [OK] if user signed, allow to add only a higher bid
-    - if user signed, allow to add comments
+    - [OK] if user signed, allow to add comments
     - if current user is the listing creator, allow to close the auction
       * show pop up of are you sure?
     * [OK] if current user is the listing creator, allow to delete the auction
