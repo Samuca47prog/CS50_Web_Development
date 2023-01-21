@@ -43,7 +43,8 @@
 
         <section class="comments">
             <h2 class="comments__hearder">Comments</h2>
-            <form class="comments__form" action="">
+            <form class="comments__form" action="{% url 'add_comment' listing_id=listing.id %}" method="post">
+                {% csrf_token %}
                 <h4>Write your comment</h4>
                 <div class="comments__form-textarea">
                     <textarea required class="form-control" name="new_comment" placeholder="Comment..."></textarea>
