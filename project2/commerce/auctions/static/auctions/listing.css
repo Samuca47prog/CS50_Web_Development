@@ -73,3 +73,15 @@ input.listing__bids-bid {
     background-color: #0D7BFF;
     color: whitesmoke;;
 }
+
+/* Comments */
+
+.comments__form {
+    border: 2px solid green;
+    
+    display: grid;
+}
+
+.comments__form-submit {
+    width: 20px;
+}
