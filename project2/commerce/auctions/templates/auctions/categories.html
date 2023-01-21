@@ -11,7 +11,7 @@
                 <ul class="categories">
                     {% for category in categories %}
                     <li class="category__item">
-                        <a href="{% url 'category' category_id=category.id %}">{{ category.id }}. {{ category.name }}</a>
+                        <a href="{% url 'category' category_id=category.id %}">{{ forloop.counter }}. {{ category.name }}</a>
                     </li>
                     {% endfor %}
                 </ul>

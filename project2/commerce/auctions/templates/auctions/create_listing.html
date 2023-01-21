@@ -29,7 +29,6 @@
         <!-- Category -->
         <div class="form-group">
             <select class="form-control" name="category">
-                <!-- <option value="">No Category</option> -->
                 {% for category in categories %}
                     <option value="{{ category.id }}">{{ category }}</option>
                 {% endfor %}

@@ -44,20 +44,21 @@
 
     page interactions:
     - [OK] attach page when user click an listing image
-    - if user signed, allow to add/remove to watch list
+    - [OK] if user signed, allow to add/remove to watch list
     - [OK] if user signed, allow to add only a higher bid
     - [OK] if user signed, allow to add comments
-    - if current user is the listing creator, allow to close the auction
+    - [OK] if current user is the listing creator, allow to close the auction
       * show pop up of are you sure?
     * [OK] if current user is the listing creator, allow to delete the auction
       * show pop up of are you sure?
-    - when auction is closed, show winner bid
-    - when auction is closed and user is still in that page, show to him if he is the winner
+    - [OK] when auction is closed, show winner bid
+    - [] when auction is closed and user is still in that page, show to him if he is the winner
 
 ## WatchList page
 * page that display current user favorite auctions
 
     similar to index page, but show just user favorite auctions
+    - [OK] show user watchlist
 
 ## Categories page
 * shows currently categories
@@ -104,6 +105,14 @@
     - watchlist
 
 ---
+
+# Ajusts
+
+- Set start bid
+- bid as manytomany field
+- winner_bid field
+- refactor the functions
+- clean the code
 
 # Alternative learnings
 
