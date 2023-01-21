@@ -71,17 +71,51 @@ input.listing__bids-bid {
     border-radius: 4px;
 
     background-color: #0D7BFF;
-    color: whitesmoke;;
+    color: whitesmoke;
 }
 
 /* Comments */
 
 .comments__form {
-    border: 2px solid green;
-    
-    display: grid;
+    display: block;
+
+    margin: 1rem;
 }
 
 .comments__form-submit {
-    width: auto;
+    padding: 5px 10px;
+
+    font-weight: 600;
+
+    border-radius: 4px;
+
+    background-color: #0D7BFF;
+    color: whitesmoke;
+
+    margin: 5px 10px;
+}
+
+.comments__length {
+    font-size: 1.2rem;
+
+    margin: 1rem;
+}
+
+.comments__ul {
+    list-style: none;
+}
+
+.comments__ul li {
+    margin-bottom: 1rem;
+}
+
+.comments__comment-author {
+    font-weight: 700;
+}
+
+.comments__comment-comment { 
+    padding: 1rem;
+
+    border: 2px solid rgb(221, 221, 221);
+    border-radius: 5px;
 }

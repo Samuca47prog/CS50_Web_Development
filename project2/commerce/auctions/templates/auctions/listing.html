@@ -51,7 +51,8 @@
                 </div>
                 <input class="comments__form-submit" type="submit" value="submit">
             </form>
-            <ul>
+            <div class="comments__length">{{ comments|length }} comments so far</div>
+            <ul class="comments__ul">
                 {% for comment in comments %}
                 <li>
                     <div class="comments__comment-author">{{ comment.author }}</div>
