@@ -9,7 +9,7 @@ from .models import User, Listing, Categories, Bid, Comments
 
 def index(request):
     return render(request, "auctions/index.html", {
-        "listings": Listing.objects.all().order_by("-creation"),
+        "listings": Listing.objects.filter(activated=True).order_by("-creation"),
         "header": "Active Listings"
     })
 
