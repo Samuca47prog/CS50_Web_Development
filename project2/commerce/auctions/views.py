@@ -65,6 +65,9 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
+
+
+
 def create_listing(request):
     if request.method == "POST":
         title = request.POST["title"]
@@ -100,6 +103,8 @@ def create_listing(request):
         return render(request, "auctions/create_listing.html", {
             "categories": Categories.objects.all()
         })
+
+
 
 
 
@@ -152,6 +157,8 @@ def category(request, category_id):
     })
 
 
+
+
 def delete_auction(request, listing_id):
     listing = Listing.objects.get(id=listing_id)
     listing_name = listing.title
@@ -197,6 +204,13 @@ def remove_from_watchlist(request, listing_id):
 def add_bid(request, listing_id):
     listing = Listing.objects.get(pk=int(listing_id))
 
+    user = User.objects.get(pk=int(request.user.id))
+    user_whatlist = user.favorites.all()
+    if listing in user_whatlist:
+        in_watchlist = True
+    else:
+        in_watchlist = False
+
     if request.method == "POST":
         user_bid = request.POST["bid"]
         user = User.objects.get(pk=int(request.user.id))
@@ -207,13 +221,6 @@ def add_bid(request, listing_id):
             listing.bids_count = listing.bids_count + 1
             bid.save()
             listing.save()
-
-            user = User.objects.get(pk=int(request.user.id))
-            user_whatlist = user.favorites.all()
-            if listing in user_whatlist:
-                in_watchlist = True
-            else:
-                in_watchlist = False
 
             return render(request, "auctions/listing.html", {
                 "listing": listing,
@@ -233,8 +240,11 @@ def add_bid(request, listing_id):
 
     return listing(request, listing_id)
 
+
+
+
 def add_comment(request, listing_id):
-    listing = Listing.objects.get(pk=listing_id)
+    actual_listing = Listing.objects.get(pk=listing_id)
 
     if request.method == "POST":
         comment_text = request.POST["new_comment"]
@@ -242,10 +252,12 @@ def add_comment(request, listing_id):
 
         comment = Comments(author=user, comment=comment_text)
         comment.save()
-        comment.listing.add(listing)
+        comment.listing.add(actual_listing)
 
 
     return listing(request, listing_id)
+
+
 
 
 def set_desactivated(request, listing_id):

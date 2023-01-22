@@ -53,6 +53,7 @@
       * show pop up of are you sure?
     - [OK] when auction is closed, show winner bid
     - [] when auction is closed and user is still in that page, show to him if he is the winner
+    * show listing description
 
 ## WatchList page
 * page that display current user favorite auctions
