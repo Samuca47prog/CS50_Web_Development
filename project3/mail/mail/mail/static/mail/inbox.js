@@ -59,43 +59,13 @@ function load_mailbox(mailbox) {
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
-
-  switch (mailbox) {
-    case "sent": {
-      load_sentbox();
-    };
-
-    case "inbox": {
-      load_inbox();
-    }
-
-    default: {
-      console.log("NA")
-    }
-  }
-  // if (mailbox === "sent") {
-  //   load_sentbox();
-  // }
+  fetch_mailbox(mailbox);
 
 }
 
-function load_sentbox() {
+function fetch_mailbox(mailbox) {
 
-  fetch('/emails/sent')
-  .then(response => response.json())
-  .then(emails => {
-      // Print emails
-      console.log(emails);
-
-      // ... do something else with emails ...
-      emails.forEach(add_email)
-
-  });
-}
-
-function load_inbox() {
-
-  fetch('/emails/inbox')
+  fetch('/emails/' + mailbox)
   .then(response => response.json())
   .then(emails => {
       // Print emails
