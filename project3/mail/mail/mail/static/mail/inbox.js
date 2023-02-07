@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function() {
   load_mailbox("inbox");
 });
 
+
+
 function compose_email() {
 
   // Show compose view and hide other views
@@ -53,6 +55,58 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
 
+
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+
+
+  if (mailbox === "sent") {
+    load_sentbox();
+  }
+  
+}
+
+function load_sentbox() {
+  fetch('/emails/sent')
+  .then(response => response.json())
+  .then(emails => {
+      // Print emails
+      console.log(emails);
+
+      // ... do something else with emails ...
+      emails.forEach(add_email)
+
+  });
+}
+
+function add_email(contents) {
+
+  console.log(contents)
+
+  const email = document.createElement('div');
+  email.className = 'email-box';
+  
+
+  const left_side = document.createElement('div');
+  left_side.className = 'email-box__left-side'
+
+  const sender = document.createElement('div');
+  sender.innerHTML = contents.sender;
+  sender.className = 'email-box__sender'
+
+  const subject = document.createElement('div');
+  subject.innerHTML = contents.subject;
+
+  left_side.append(sender);
+  left_side.append(subject);
+
+
+  const timestamp = document.createElement('div');
+  timestamp.innerHTML = contents.timestamp;
+
+
+  email.append(left_side);
+  email.append(timestamp);
+
+  document.querySelector("#emails-view").append(email)
 }

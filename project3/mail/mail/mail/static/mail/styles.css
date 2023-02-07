@@ -1,3 +1,24 @@
 textarea {
     min-height: 400px;
 }
+
+.email-box {
+    display: flex;
+
+    justify-content: space-between;
+
+    border: 2px solid rgb(31, 31, 31);
+
+    margin: 10px 0px;
+    padding: 0px 10px;
+}
+
+.email-box__left-side {
+   display: flex;
+}
+
+.email-box__sender {
+    font-weight: 600;
+
+    margin-right: 10px;
+}
