@@ -60,13 +60,27 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
 
-  if (mailbox === "sent") {
-    load_sentbox();
+  switch (mailbox) {
+    case "sent": {
+      load_sentbox();
+    };
+
+    case "inbox": {
+      load_inbox();
+    }
+
+    default: {
+      console.log("NA")
+    }
   }
-  
+  // if (mailbox === "sent") {
+  //   load_sentbox();
+  // }
+
 }
 
 function load_sentbox() {
+
   fetch('/emails/sent')
   .then(response => response.json())
   .then(emails => {
@@ -78,6 +92,22 @@ function load_sentbox() {
 
   });
 }
+
+function load_inbox() {
+
+  fetch('/emails/inbox')
+  .then(response => response.json())
+  .then(emails => {
+      // Print emails
+      console.log(emails);
+
+      // ... do something else with emails ...
+      emails.forEach(add_email)
+
+  });
+}
+
+
 
 function add_email(contents) {
 
@@ -99,7 +129,6 @@ function add_email(contents) {
 
   left_side.append(sender);
   left_side.append(subject);
-
 
   const timestamp = document.createElement('div');
   timestamp.innerHTML = contents.timestamp;
