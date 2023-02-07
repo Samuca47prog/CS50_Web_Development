@@ -6,6 +6,20 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
   document.querySelector('#compose').addEventListener('click', compose_email);
 
+  // load email page
+  const emails   = document.querySelectorAll(".email-box")
+  
+  document.body.addEventListener('click', event => {
+    
+    const element = event.target;
+
+    if (element.classList.contains('box')) {
+      alert(element.dataset.id);
+    }
+
+  })
+
+
   //send email when form is submitted
   document.querySelector("#compose-form").onsubmit = function() {
     const recipients = document.querySelector("#compose-recipients").value;
@@ -84,7 +98,8 @@ function add_email(contents) {
   console.log(contents)
 
   const email = document.createElement('div');
-  email.className = 'email-box';
+  email.className = 'email-box box';
+  email.dataset.id = contents.id;
   
 
   const left_side = document.createElement('div');
@@ -92,16 +107,21 @@ function add_email(contents) {
 
   const sender = document.createElement('div');
   sender.innerHTML = contents.sender;
-  sender.className = 'email-box__sender'
+  sender.className = 'email-box__sender box'
+  sender.dataset.id = contents.id;
 
   const subject = document.createElement('div');
   subject.innerHTML = contents.subject;
+  subject.className = 'box'
+  subject.dataset.id = contents.id;
 
   left_side.append(sender);
   left_side.append(subject);
 
   const timestamp = document.createElement('div');
   timestamp.innerHTML = contents.timestamp;
+  timestamp.className = 'box';
+  timestamp.dataset.id = contents.id;
 
 
   email.append(left_side);
