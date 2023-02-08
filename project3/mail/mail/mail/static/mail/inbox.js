@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const emails   = document.querySelectorAll(".email-box")
     emails.forEach( (email) => {
       if (email.contains(clicked_element)) {
+        
+        // read email
+        mark_email_as_read(email.dataset.id)
+
         fetch_email_page(email.dataset.id)
       }
     });
@@ -69,6 +73,7 @@ function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
+  document.querySelector('#specific-email').style.display = 'none';
 
 
   // Show the mailbox name
@@ -78,13 +83,17 @@ function load_mailbox(mailbox) {
 
 }
 
+
+
+
 function fetch_mailbox(mailbox) {
 
   fetch('/emails/' + mailbox)
   .then(response => response.json())
   .then(emails => {
       // Print emails
-      // console.log(emails);
+      console.log(emails);
+      console.log("F")
 
       // ... do something else with emails ...
       emails.forEach(add_email)
@@ -97,9 +106,14 @@ function add_email(contents) {
 
   console.log(contents)
 
+
   const email = document.createElement('div');
   email.className = 'email-box';
   email.dataset.id = contents.id
+
+  if (contents.read) {
+    email.style.backgroundColor = "rgb(200, 200, 200)"
+  }
   
 
   const left_side = document.createElement('div');
@@ -125,6 +139,10 @@ function add_email(contents) {
   document.querySelector("#emails-view").append(email)
 };
 
+
+
+
+
 function fetch_email_page(email_id) {
   fetch('/emails/' + email_id, {
     method: 'GET'
@@ -142,15 +160,15 @@ function fetch_email_page(email_id) {
 function load_email_page(email) {
 
     // Show the mailbox and hide other views
-    document.querySelector('#emails-view').style.display = 'block';
+    document.querySelector('#specific-email').style.display = 'block';
+    document.querySelector('#emails-view').style.display = 'none';
     document.querySelector('#compose-view').style.display = 'none';
-  
   
     // Show the mailbox name
     document.querySelector('#emails-view').innerHTML = ``;
+    document.querySelector('#specific-email').innerHTML = ``;
   
-    const view = document.querySelector('#emails-view')
-
+    const view = document.querySelector('#specific-email')
 
         const from = document.createElement('div')
         from.innerHTML = "<strong>From:</strong> " + email.sender
@@ -164,10 +182,21 @@ function load_email_page(email) {
         const timestamp = document.createElement('div')
         timestamp.innerHTML = "<strong>Timestamp:</strong> " + email.timestamp
 
+        const id = document.createElement('div')
+        id.innerHTML = "<strong>id:</strong> " + email.id
+        const read = document.createElement('div')
+        read.innerHTML = "<strong>read:</strong> " + email.read
+        const archived = document.createElement('div')
+        archived.innerHTML = "<strong>archived:</strong> " + email.archived
+
     view.append(from)
     view.append(to)
     view.append(subject)
     view.append(timestamp)
+
+    view.append(id)
+    view.append(read)
+    view.append(archived)
 
     const reply = document.createElement('button')
     reply.innerHTML = 'Reply'
@@ -181,4 +210,18 @@ function load_email_page(email) {
     view.append(reply)
     view.append(line)
     view.append(body)
+}
+
+
+
+
+
+
+function mark_email_as_read(email_id) {
+  fetch('/emails/' + email_id, {
+    method: 'PUT',
+    body: JSON.stringify({
+        read: true
+    })
+  })
 }
