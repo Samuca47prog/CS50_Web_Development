@@ -6,9 +6,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
   document.querySelector('#compose').addEventListener('click', compose_email);
 
-  // load email page
+
+
+  
   document.body.addEventListener('click', event => {
     
+    // --- load email page
     const clicked_element = event.target;
 
     const emails   = document.querySelectorAll(".email-box")
@@ -22,7 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
 
+
+
+    // --- archive email
+    if (clicked_element.id === "archive-email") {
+      toggle_archived_status(clicked_element.dataset.id);
+
+      load_mailbox("inbox");
+    }
+
   })
+
+
+
+
 
 
   //send email when form is submitted
@@ -91,10 +107,6 @@ function fetch_mailbox(mailbox) {
   fetch('/emails/' + mailbox)
   .then(response => response.json())
   .then(emails => {
-      // Print emails
-      console.log(emails);
-      console.log("F")
-
       // ... do something else with emails ...
       emails.forEach(function (email) {
         add_email(email, mailbox)
@@ -204,12 +216,19 @@ function load_email_page(email) {
     reply.innerHTML = 'Reply'
     reply.classList = "btn btn-sm btn-outline-primary"
 
+    const archive = document.createElement('button')
+    archive.innerHTML = email.archived ? 'Unarchive' : 'Archive';
+    archive.classList = "btn btn-sm btn-outline-primary"
+    archive.id = "archive-email"
+    archive.dataset.id = email.id
+
     const line = document.createElement('hr')
 
     const body = document.createElement('div');
     body.innerHTML = email.body
 
     view.append(reply)
+    view.append(archive)
     view.append(line)
     view.append(body)
 }
@@ -226,4 +245,22 @@ function mark_email_as_read(email_id) {
         read: true
     })
   })
+}
+
+
+
+
+function toggle_archived_status(email_id) {
+  fetch('/emails/' + email_id)
+  .then(response => response.json())
+  .then(email => {
+      // ... do something else with email ...
+      const archived = email.archived
+      fetch('/emails/' + email_id, {
+        method: 'PUT',
+        body: JSON.stringify({
+            archived: !(archived)
+        })
+      })
+  });
 }
