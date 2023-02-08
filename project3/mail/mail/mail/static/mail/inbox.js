@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const emails   = document.querySelectorAll(".email-box")
     emails.forEach( (email) => {
       if (email.contains(clicked_element)) {
-        console.log(email);
+        fetch_email_page(email.dataset.id)
       }
     });
 
@@ -90,17 +90,16 @@ function fetch_mailbox(mailbox) {
       emails.forEach(add_email)
 
   });
-}
-
-
+};
 
 function add_email(contents) {
+ 
 
-  // console.log(contents)
+  console.log(contents)
 
   const email = document.createElement('div');
   email.className = 'email-box';
-  email.dataset.id = contents.id;
+  email.dataset.id = contents.id
   
 
   const left_side = document.createElement('div');
@@ -108,6 +107,7 @@ function add_email(contents) {
 
   const sender = document.createElement('div');
   sender.innerHTML = contents.sender;
+  sender.className = 'email-box__sender'
 
   const subject = document.createElement('div');
   subject.innerHTML = contents.subject;
@@ -123,4 +123,36 @@ function add_email(contents) {
   email.append(timestamp);
 
   document.querySelector("#emails-view").append(email)
+};
+
+function fetch_email_page(email_id) {
+  fetch('/emails/' + email_id, {
+    method: 'GET'
+  })
+  .then(response => response.json())
+  .then(email => {
+      // Print email
+      console.log(email);
+      load_email_page(email)
+  
+      // ... do something else with email ...
+  });
+}
+
+function load_email_page(email) {
+
+    // Show the mailbox and hide other views
+    document.querySelector('#emails-view').style.display = 'block';
+    document.querySelector('#compose-view').style.display = 'none';
+  
+  
+    // Show the mailbox name
+    document.querySelector('#emails-view').innerHTML = ``;
+  
+    const view = document.querySelector('#emails-view')
+
+    const data = document.createElement('div')
+    data.innerHTML = email.sender
+
+    view.append(data)
 }
