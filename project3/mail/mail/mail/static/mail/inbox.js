@@ -151,8 +151,34 @@ function load_email_page(email) {
   
     const view = document.querySelector('#emails-view')
 
-    const data = document.createElement('div')
-    data.innerHTML = email.sender
 
-    view.append(data)
+        const from = document.createElement('div')
+        from.innerHTML = "<strong>From:</strong> " + email.sender
+
+        const to = document.createElement('div')
+        to.innerHTML = "<strong>To:</strong> " + email.recipients
+
+        const subject = document.createElement('div')
+        subject.innerHTML = "<strong>Subject:</strong> " + email.subject
+
+        const timestamp = document.createElement('div')
+        timestamp.innerHTML = "<strong>Timestamp:</strong> " + email.timestamp
+
+    view.append(from)
+    view.append(to)
+    view.append(subject)
+    view.append(timestamp)
+
+    const reply = document.createElement('button')
+    reply.innerHTML = 'Reply'
+    reply.classList = "btn btn-sm btn-outline-primary"
+
+    const line = document.createElement('hr')
+
+    const body = document.createElement('div');
+    body.innerHTML = email.body
+
+    view.append(reply)
+    view.append(line)
+    view.append(body)
 }
