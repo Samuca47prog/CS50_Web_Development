@@ -7,15 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#compose').addEventListener('click', compose_email);
 
   // load email page
-  const emails   = document.querySelectorAll(".email-box")
-  
   document.body.addEventListener('click', event => {
     
-    const element = event.target;
+    const clicked_element = event.target;
 
-    if (element.classList.contains('box')) {
-      alert(element.dataset.id);
-    }
+    const emails   = document.querySelectorAll(".email-box")
+    emails.forEach( (email) => {
+      if (email.contains(clicked_element)) {
+        console.log(email);
+      }
+    });
 
   })
 
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(response => response.json())
     .then(result => {
         // Print result
-        console.log(result);
+        // console.log(result);
     });
 
     load_mailbox("sent");
@@ -83,7 +84,7 @@ function fetch_mailbox(mailbox) {
   .then(response => response.json())
   .then(emails => {
       // Print emails
-      console.log(emails);
+      // console.log(emails);
 
       // ... do something else with emails ...
       emails.forEach(add_email)
@@ -95,10 +96,10 @@ function fetch_mailbox(mailbox) {
 
 function add_email(contents) {
 
-  console.log(contents)
+  // console.log(contents)
 
   const email = document.createElement('div');
-  email.className = 'email-box box';
+  email.className = 'email-box';
   email.dataset.id = contents.id;
   
 
@@ -107,21 +108,15 @@ function add_email(contents) {
 
   const sender = document.createElement('div');
   sender.innerHTML = contents.sender;
-  sender.className = 'email-box__sender box'
-  sender.dataset.id = contents.id;
 
   const subject = document.createElement('div');
   subject.innerHTML = contents.subject;
-  subject.className = 'box'
-  subject.dataset.id = contents.id;
 
   left_side.append(sender);
   left_side.append(subject);
 
   const timestamp = document.createElement('div');
   timestamp.innerHTML = contents.timestamp;
-  timestamp.className = 'box';
-  timestamp.dataset.id = contents.id;
 
 
   email.append(left_side);
