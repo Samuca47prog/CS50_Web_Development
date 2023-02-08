@@ -96,12 +96,14 @@ function fetch_mailbox(mailbox) {
       console.log("F")
 
       // ... do something else with emails ...
-      emails.forEach(add_email)
+      emails.forEach(function (email) {
+        add_email(email, mailbox)
+      });
 
   });
 };
 
-function add_email(contents) {
+function add_email(contents, mailbox) {
  
 
   console.log(contents)
@@ -111,7 +113,7 @@ function add_email(contents) {
   email.className = 'email-box';
   email.dataset.id = contents.id
 
-  if (contents.read) {
+  if (contents.read && mailbox === 'inbox') {
     email.style.backgroundColor = "rgb(200, 200, 200)"
   }
   
