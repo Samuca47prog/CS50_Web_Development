@@ -1,3 +1,7 @@
+window.onload = function() {
+  load_mailbox("inbox");
+};
+
 document.addEventListener('DOMContentLoaded', function() {
 
   // Use buttons to toggle between views
@@ -7,14 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#compose').addEventListener('click', compose_email);
 
 
-  
-
-  
+  // whenever the site gets clicked
   document.body.addEventListener('click', event => {
     
-    // --- load email page
     const clicked_element = event.target;
 
+    // --- load email page
     const emails   = document.querySelectorAll(".email-box")
     emails.forEach( (email) => {
       if (email.contains(clicked_element)) {
@@ -25,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch_email_page(email.dataset.id)
       }
     });
-
 
 
     // --- archive email
@@ -44,10 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
   })
 
 
-
-
-
-
   //send email when form is submitted
   document.querySelector("#compose-form").onsubmit = function() {
     const recipients = document.querySelector("#compose-recipients").value;
@@ -64,8 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => response.json())
     .then(result => {
-        // Print result
-        // console.log(result);
+      console.log(result)
+      
     });
 
     load_mailbox("sent");
@@ -74,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   // By default, load the inbox
-  load_mailbox("inbox");
+  // load_mailbox("inbox");
 });
 
 
@@ -105,6 +102,7 @@ function compose_email() {
 
 function load_mailbox(mailbox) {
 
+  // window.location.reload();
 
   // Show the mailbox and hide other views
   document.querySelector('#emails-view').style.display = 'block';
@@ -114,6 +112,7 @@ function load_mailbox(mailbox) {
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
+
 
   fetch_mailbox(mailbox);
 
@@ -127,6 +126,9 @@ function fetch_mailbox(mailbox) {
   fetch('/emails/' + mailbox)
   .then(response => response.json())
   .then(emails => {
+
+      // console.log(emails)
+
       // ... do something else with emails ...
       emails.forEach(function (email) {
         add_email(email, mailbox)
@@ -138,7 +140,7 @@ function fetch_mailbox(mailbox) {
 function add_email(contents, mailbox) {
  
 
-  // console.log(contents)
+  console.log(contents)
 
 
   const email = document.createElement('div');
@@ -185,10 +187,9 @@ function fetch_email_page(email_id) {
   .then(email => {
       // Print email
       // console.log(email);
-
-      load_email_page(email)
   
       // ... do something else with email ...
+      load_email_page(email)
   });
 }
 
@@ -314,8 +315,7 @@ function reply_email(email_id) {
         subject.value = 'Re: ' + email.subject
       }
 
-      body.value = email.timestamp + ' ' + email.sender + ' wrote: \n' + email.body + '\n\r'
-
+      body.value = email.timestamp + ' ' + email.sender + ' wrote: \n' + email.body + '\n\r---\n\r'
       
   });
 
