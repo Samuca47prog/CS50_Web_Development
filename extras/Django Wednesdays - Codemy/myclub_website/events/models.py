@@ -1,12 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Venue(models.Model):
     name = models.CharField('Venue name', max_length=128)
     address = models.CharField(max_length=300)
     zip_code = models.CharField('Zip code', max_length=15)
-    phone = models.CharField('Contact phone', max_length=15)
-    web = models.URLField('Website Address')
-    email_address = models.EmailField('Email Address')
+    phone = models.CharField('Contact phone', max_length=15, blank=True)
+    web = models.URLField('Website Address', blank=True)
+    email_address = models.EmailField('Email Address',blank=True)
 
     def __str__(self):
         return self.name
@@ -23,7 +24,7 @@ class Event(models.Model):
     name = models.CharField('Event name', max_length=128)
     event_date = models.DateTimeField('Event date')
     venue = models.ForeignKey(Venue, blank=True, null=True, on_delete=models.CASCADE)
-    manager = models.CharField(max_length=64)
+    manager = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
     description = models.TextField(blank=True)
     attendees = models.ManyToManyField(MyClubUser, blank=True)
 
