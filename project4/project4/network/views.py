@@ -11,10 +11,8 @@ from .models import Posts
 
 
 def index(request):
-    user_posts = Posts.objects.filter(author=request.user.id)
 
-    return render(request, "network/index.html", {
-    })
+    return all_posts(request)
 
 
 def login_view(request):
