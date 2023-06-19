@@ -91,3 +91,13 @@ def add_post(request):
         'form': form,
         'submitted': submitted
     })
+
+
+
+
+def all_posts(request):
+    all_posts = Posts.objects.all()
+
+    return render(request, "network/all_posts.html", {
+        "all_posts": all_posts
+    })

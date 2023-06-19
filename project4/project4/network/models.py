@@ -12,4 +12,4 @@ class Posts(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.author.username + " at " + self.posted_date.strftime("dd/MM/yyyy hh:mm:ss")
+        return self.author.username + " at " + self.posted_date.strftime("%m/%d/%Y, %H:%M:%S")

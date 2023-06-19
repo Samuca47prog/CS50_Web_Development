@@ -9,13 +9,16 @@
             Succesfully!
             
         {% else %}
-            <form action="" method="POST" enctype="multipart/form-data" class="card-container">
+            <form action="" method="POST" enctype="multipart/form-data" class="card">
                 {% csrf_token %}
 
-                <h2>New Post</h2>
-                {{ form.as_p }}
-                
-                <input type="submit" value="Submit" class="btn btn-primary">
+                <div class="card-body">
+                    <h2 class="card-title">New Post</h2>
+                    {{ form.as_p }}
+                    
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </div>
+
 
             </form>
         {% endif %}

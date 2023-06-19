@@ -2,9 +2,6 @@
     margin: 10px;
 }
 
-.card-container {
-    padding: 12px;
-
-    border: 1px solid #ced4da;
-    border-radius: 7px;
+.card {
+    margin: 10px 0px;
 }
