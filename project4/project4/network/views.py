@@ -1,14 +1,20 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 
+from .forms import PostForm
+
 from .models import User
+from .models import Posts
 
 
 def index(request):
-    return render(request, "network/index.html")
+    user_posts = Posts.objects.filter(author=request.user.id)
+
+    return render(request, "network/index.html", {
+    })
 
 
 def login_view(request):
@@ -61,3 +67,27 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "network/register.html")
+
+
+
+
+def add_post(request):
+    submitted = False
+
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return HttpResponseRedirect('/add_post?submitted=True')
+        
+    else:
+        form = PostForm
+        if 'submitted' in request.GET:
+            submitted = True
+
+    return render(request, 'network/add_post.html', {
+        'form': form,
+        'submitted': submitted
+    })

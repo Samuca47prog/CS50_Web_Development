@@ -1,0 +1,31 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+
+        {% if submitted %}
+            Your Post was submitted
+            Succesfully!
+            
+        {% else %}
+            <form action="" method="POST" enctype="multipart/form-data" class="card-container">
+                {% csrf_token %}
+
+                <h2>New Post</h2>
+                {{ form.as_p }}
+                
+                <input type="submit" value="Submit" class="btn btn-primary">
+
+            </form>
+        {% endif %}
+
+    {% else %}
+    <h1>Sorry, you must be authenticated to see this view...</h1>
+    <a href="{% url 'login' %}">Login here</a>
+
+    {% endif %}
+
+
+
+{% endblock %}
