@@ -70,8 +70,6 @@ def register(request):
 
 
 def add_post(request):
-    submitted = False
-
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -79,16 +77,12 @@ def add_post(request):
             post.author = request.user
             post.save()
             return redirect("all_posts")
-            # return HttpResponseRedirect('/add_post?submitted=True')
         
     else:
         form = PostForm
-        if 'submitted' in request.GET:
-            submitted = True
 
     return render(request, 'network/add_post.html', {
         'form': form,
-        'submitted': submitted
     })
 
 
@@ -99,4 +93,16 @@ def all_posts(request):
 
     return render(request, "network/all_posts.html", {
         "all_posts": all_posts
+    })
+
+
+
+def user_profile(request, user_id):
+    user = User.objects.get(pk=user_id)
+
+    user_posts = Posts.objects.filter(author=request.user).order_by('-posted_date')
+
+    return render(request, "network/user_profile.html", {
+        "user": user,
+        "user_posts": user_posts
     })

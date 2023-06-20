@@ -3,25 +3,18 @@
 {% block body %}
 
     {% if user.is_authenticated %}
+        <form action="" method="POST" enctype="multipart/form-data" class="card">
+            {% csrf_token %}
 
-        {% if submitted %}
-            Your Post was submitted
-            Succesfully!
-            
-        {% else %}
-            <form action="" method="POST" enctype="multipart/form-data" class="card">
-                {% csrf_token %}
-
-                <div class="card-body">
-                    <h2 class="card-title">New Post</h2>
-                    {{ form.as_p }}
-                    
-                    <input type="submit" value="Submit" class="btn btn-primary">
-                </div>
+            <div class="card-body">
+                <h2 class="card-title">New Post</h2>
+                {{ form.as_p }}
+                
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
 
 
-            </form>
-        {% endif %}
+        </form>
 
     {% else %}
     <h1>Sorry, you must be authenticated to see this view...</h1>

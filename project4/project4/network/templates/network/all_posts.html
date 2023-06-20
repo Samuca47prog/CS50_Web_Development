@@ -5,7 +5,9 @@
     <h2>All Posts</h2>
     {% if user.is_authenticated %}
 
-        {% for post in all_posts %}
+        {% include "network/render_posts.html" with posts=all_posts %}
+
+        <!-- {% for post in all_posts %}
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"><Strong>{{ post.author }}</Strong></h5>
@@ -18,7 +20,7 @@
                     <p class="card-text">Comments</p>
                 </div>
             </div>
-        {% endfor %}
+        {% endfor %} -->
 
     {% else %}
     <h1>Sorry, you must be authenticated to see this view...</h1>
