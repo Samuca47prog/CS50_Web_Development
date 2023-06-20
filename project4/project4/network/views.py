@@ -111,7 +111,7 @@ def user_profile(request, user_id):
         "user": user,
         "user_posts": user_posts,
         "following": following,
-        "followers": followers
+        "followers": followers,
     })
 
 
