@@ -4,51 +4,14 @@
 
 {% if user.is_authenticated %}
 
-    <h1>Posts</h1>
-    {% for post in posts %}
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">
-                <a href="{% url 'user_profile' post.author.id %}" style="color: black">
-                    <Strong>{{ post.author }}</Strong>
-                </a>
-            </h5>
-            <a href="#">Edit</a>
-            <div class="card">
-                <p class="card-body">{{ post.content }}</p>
-            </div>
-            <p class="card-text">{{ post.posted_date }}</p>
-            <p class="card-text">Likes</p>
-            <p class="card-text">Comments</p>
-        </div>
-    </div>
-    {% empty %}
-        No Post available
-    {% endfor %}
+    <h2>All Posts</h2>
 
-    <br><br><br>
+    {% include "network/render_posts.html" with posts=posts %}
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            {% if posts.has_previous %}
-            <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
-            {% endif %}
+    {% include "network/pagination.html" with posts=posts nums=nums %}
+    
 
-            {% for n in nums %}
-            <li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
-            {% endfor %}
-
-            {% if posts.has_next %}
-            <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
-            <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">Last &raquo</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-
-    <!-- {% include "network/render_posts.html" with posts=all_posts %} -->
-
-    {% else %}
+{% else %}
     <h1>Sorry, you must be authenticated to see this view...</h1>
     <a href="{% url 'login' %}">Login here</a>
 

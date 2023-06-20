@@ -39,7 +39,9 @@
 </div>
 
 
-{% include "network/render_posts.html" with posts=user_posts %}
+{% include "network/render_posts.html" with posts=posts %}
+
+{% include "network/pagination.html" with posts=posts nums=nums %}
 
 
 {% else %}

@@ -95,26 +95,29 @@ def add_post(request):
 
 
 
+def paginate_posts(request, all_posts):
+        # set up pagination
+    p = Paginator(all_posts, 5)
+    page = request.GET.get('page')
+    posts = p.get_page(page)
+    nums = "a" * posts.paginator.num_pages
+
+    return  posts, nums
+
+
+
+
 def all_posts(request):
     all_posts = Posts.objects.all().order_by('-posted_date')
 
     # set up pagination
-    p = Paginator(Posts.objects.all(), 5)
-    page = request.GET.get('page')
-
-    posts = p.get_page(page)
-
-    nums = "a" * posts.paginator.num_pages
+    posts, nums = paginate_posts(request, all_posts)
 
     return render(request, "network/all_posts.html", {
-        'all_posts': all_posts,
         'posts': posts,
         "nums": nums
     })
 
-    return render(request, "network/all_posts.html", {
-        "all_posts": all_posts
-    })
 
 
 
@@ -126,12 +129,38 @@ def user_profile(request, user_id):
     following = user.following.all()
     followers = user_profile.followers.all()
 
+    # set up pagination
+    posts, nums = paginate_posts(request, user_posts)
+
     return render(request, "network/user_profile.html", {
         "user": user,
-        "user_posts": user_posts,
         "following": following,
         "followers": followers,
+        'posts': posts,
+        "nums": nums
     })
+
+
+def followings(request):
+    user = User.objects.get(pk=request.user.id)
+
+    followings = [following.user for following in user.following.all()]
+
+    posts = Posts.objects.filter(author__in=followings).order_by('-posted_date')
+
+    # set up pagination
+    posts, nums = paginate_posts(request, posts)
+
+    return render(request, "network/following.html", {
+        "following": followings,
+        'posts': posts,
+        "nums": nums
+    })
+
+
+
+
+
 
 
 
@@ -156,20 +185,5 @@ def remove_follower(request, user_id):
     return redirect("user_profile", user_id=user_id)
 
 
-
-
-
-
-def followings(request):
-    user = User.objects.get(pk=request.user.id)
-
-    followings = [following.user for following in user.following.all()]
-
-    posts = Posts.objects.filter(author__in=followings).order_by('-posted_date')
-
-    return render(request, "network/following.html", {
-        "all_posts": posts,
-        "following": followings
-    })
 
 
