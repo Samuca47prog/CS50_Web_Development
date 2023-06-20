@@ -20,5 +20,5 @@ urlpatterns = [
     path("remove_follower/<user_id>", views.remove_follower, name="remove_follower"),
 
     # Following
-    path("followings/<user_id>", views.followings, name="followings"),
+    path("followings", views.followings, name="followings"),
 ]

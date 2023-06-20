@@ -142,14 +142,16 @@ def remove_follower(request, user_id):
 
 
 
-def followings(request, user_id):
-    user = User.objects.get(id=user_id)
-    user_profile = UserProfile.objects.get(user=user)
+def followings(request):
+    user = User.objects.get(pk=request.user.id)
 
-    followings = user_profile.following.all()
+    followings = [following.user for following in user.following.all()]
 
     posts = Posts.objects.filter(author__in=followings).order_by('-posted_date')
 
-    return render(request, "network/all_posts.html", {
-        "all_posts": posts
+    return render(request, "network/following.html", {
+        "all_posts": posts,
+        "following": followings
     })
+
+
