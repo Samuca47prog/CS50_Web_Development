@@ -119,7 +119,12 @@ def add_follower(request, user_id):
     follower = request.user
     user = User.objects.get(id=user_id)
 
+    # Add follower
     user_profile = UserProfile.objects.get(user=user)
     user_profile.followers.add(follower)
+
+    # Add folling
+    follower_user_profile = UserProfile.objects.get(user=request.user)
+    follower_user_profile.following.add(user)
 
     return redirect("user_profile", user_id=user_id)
