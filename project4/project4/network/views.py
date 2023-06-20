@@ -104,7 +104,8 @@ def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
     user_posts = Posts.objects.filter(author=request.user).order_by('-posted_date')
     user_profile = UserProfile.objects.get(user=user)
-    following = user_profile.following.all()
+
+    following = user.following.all()
     followers = user_profile.followers.all()
 
     return render(request, "network/user_profile.html", {
@@ -124,10 +125,6 @@ def add_follower(request, user_id):
     user_profile = UserProfile.objects.get(user=user)
     user_profile.followers.add(follower)
 
-    # Add folling
-    follower_user_profile = UserProfile.objects.get(user=request.user)
-    follower_user_profile.following.add(user)
-
     return redirect("user_profile", user_id=user_id)
 
 def remove_follower(request, user_id):
@@ -138,12 +135,7 @@ def remove_follower(request, user_id):
     user_profile = UserProfile.objects.get(user=user)
     user_profile.followers.remove(ex_follower)
 
-    # remove folling
-    ex_follower_user_profile = UserProfile.objects.get(user=request.user)
-    ex_follower_user_profile.following.remove(user)
-
     return redirect("user_profile", user_id=user_id)
-
 
 
 

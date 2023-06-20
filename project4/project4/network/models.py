@@ -8,7 +8,6 @@ class User(AbstractUser):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    following = models.ManyToManyField(User, blank=True, related_name="followers")
     followers = models.ManyToManyField(User, blank=True, related_name="following")
 
     def __str__(self):
