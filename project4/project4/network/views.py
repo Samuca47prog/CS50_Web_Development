@@ -128,3 +128,17 @@ def add_follower(request, user_id):
     follower_user_profile.following.add(user)
 
     return redirect("user_profile", user_id=user_id)
+
+def remove_follower(request, user_id):
+    ex_follower = request.user
+    user = User.objects.get(id=user_id)
+
+    # remove follower
+    user_profile = UserProfile.objects.get(user=user)
+    user_profile.followers.remove(ex_follower)
+
+    # Add folling
+    ex_follower_user_profile = UserProfile.objects.get(user=request.user)
+    ex_follower_user_profile.following.remove(user)
+
+    return redirect("user_profile", user_id=user_id)

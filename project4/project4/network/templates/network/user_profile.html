@@ -13,7 +13,7 @@
         {% else %}
             <h5 class="card-title">{{ user.username }}</h5>
             {% if request.user in followers %}
-                <a href="#" class="btn btn-secondary">Unfollow</a>
+                <a href="{% url 'remove_follower' user.id %}" class="btn btn-secondary">Unfollow</a>
             {% else %}
                 <a href="{% url 'add_follower' user.id %}" class="btn btn-primary">Follow</a>
             {% endif %}
