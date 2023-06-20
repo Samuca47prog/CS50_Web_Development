@@ -58,7 +58,7 @@ def register(request):
             user = User.objects.create_user(username, email, password)
             profile = UserProfile.objects.create(user=user)
             user.save()
-            profile.save
+            profile.save()
             
         except IntegrityError:
             return render(request, "network/register.html", {
@@ -113,3 +113,13 @@ def user_profile(request, user_id):
         "following": following,
         "followers": followers
     })
+
+
+def add_follower(request, user_id):
+    follower = request.user
+    user = User.objects.get(id=user_id)
+
+    user_profile = UserProfile.objects.get(user=user)
+    user_profile.followers.add(follower)
+
+    return redirect("user_profile", user_id=user_id)

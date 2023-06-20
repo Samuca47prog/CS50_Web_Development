@@ -15,7 +15,7 @@
             {% if request.user in followers %}
                 <a href="#" class="btn btn-secondary">Unfollow</a>
             {% else %}
-                <a href="#" class="btn btn-primary">Follow</a>
+                <a href="{% url 'add_follower' user.id %}" class="btn btn-primary">Follow</a>
             {% endif %}
         {% endif %}
         <div class="row">

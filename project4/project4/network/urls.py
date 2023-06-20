@@ -16,4 +16,5 @@ urlpatterns = [
 
     # Profile page
     path("user_profile/<user_id>", views.user_profile, name="user_profile"),
+    path("add_follower/<user_id>", views.add_follower, name="add_follower")
 ]
