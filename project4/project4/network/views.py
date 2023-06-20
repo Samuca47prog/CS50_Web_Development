@@ -6,7 +6,7 @@ from django.urls import reverse
 
 from .forms import PostForm
 
-from .models import User
+from .models import User, UserProfile
 from .models import Posts
 
 
@@ -56,7 +56,10 @@ def register(request):
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
+            profile = UserProfile.objects.create(user=user)
             user.save()
+            profile.save
+            
         except IntegrityError:
             return render(request, "network/register.html", {
                 "message": "Username already taken."

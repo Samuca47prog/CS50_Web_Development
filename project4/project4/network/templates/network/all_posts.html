@@ -7,21 +7,6 @@
 
         {% include "network/render_posts.html" with posts=all_posts %}
 
-        <!-- {% for post in all_posts %}
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title"><Strong>{{ post.author }}</Strong></h5>
-                    <a href="#" >Edit</a>
-                    <div class="card">
-                        <p class="card-body">{{ post.content }}</p>
-                    </div>
-                    <p class="card-text">{{ post.posted_date }}</p>
-                    <p class="card-text">Likes</p>
-                    <p class="card-text">Comments</p>
-                </div>
-            </div>
-        {% endfor %} -->
-
     {% else %}
     <h1>Sorry, you must be authenticated to see this view...</h1>
     <a href="{% url 'login' %}">Login here</a>

@@ -1,9 +1,18 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 
 
 class User(AbstractUser):
     pass
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    following = models.ManyToManyField(User, blank=True, related_name="followers")
+    followers = models.ManyToManyField(User, blank=True, related_name="following")
+
+    def __str__(self):
+        return self.user.username
 
 class Posts(models.Model):
     posted_date = models.DateTimeField("Posted date", auto_now_add=True)
