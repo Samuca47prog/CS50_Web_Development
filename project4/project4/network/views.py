@@ -9,6 +9,10 @@ from .forms import PostForm
 from .models import User, UserProfile
 from .models import Posts
 
+# Pagination stuff
+from django.core.paginator import Paginator
+
+
 
 def index(request):
 
@@ -93,6 +97,20 @@ def add_post(request):
 
 def all_posts(request):
     all_posts = Posts.objects.all().order_by('-posted_date')
+
+    # set up pagination
+    p = Paginator(Posts.objects.all(), 5)
+    page = request.GET.get('page')
+
+    posts = p.get_page(page)
+
+    nums = "a" * posts.paginator.num_pages
+
+    return render(request, "network/all_posts.html", {
+        'all_posts': all_posts,
+        'posts': posts,
+        "nums": nums
+    })
 
     return render(request, "network/all_posts.html", {
         "all_posts": all_posts
