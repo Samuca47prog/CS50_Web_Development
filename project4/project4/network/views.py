@@ -78,7 +78,8 @@ def add_post(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return HttpResponseRedirect('/add_post?submitted=True')
+            return redirect("all_posts")
+            # return HttpResponseRedirect('/add_post?submitted=True')
         
     else:
         form = PostForm
@@ -94,7 +95,7 @@ def add_post(request):
 
 
 def all_posts(request):
-    all_posts = Posts.objects.all()
+    all_posts = Posts.objects.all().order_by('-posted_date')
 
     return render(request, "network/all_posts.html", {
         "all_posts": all_posts
