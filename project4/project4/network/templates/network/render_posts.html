@@ -7,7 +7,7 @@
                 <Strong>{{ post.author }}</Strong>
             </a>
         </h5>
-        <a href="#">Edit</a>
+        <a href="{% url 'edit_post' post.id %}">Edit</a>
         <div class="card">
             <p class="card-body">{{ post.content }}</p>
         </div>

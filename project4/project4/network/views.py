@@ -187,3 +187,15 @@ def remove_follower(request, user_id):
 
 
 
+def edit_post(request, post_id):
+    post = Posts.objects.get(pk=post_id)
+
+    form = PostForm(request.POST or None, instance=post)
+
+    if form.is_valid():
+                form.save()
+                return redirect('all_posts')
+
+    return render(request, 'network/add_post.html', {
+        'form': form,
+    })
