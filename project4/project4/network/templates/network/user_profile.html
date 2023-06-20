@@ -2,54 +2,51 @@
 
 {% block body %}
 
-{% if user.is_authenticated %}
+    {% if user.is_authenticated %}
 
-
-<div class="card">
-    <div class="card-body">
-        {% if user.id == request.user.id %}
-            <h5 class="card-title">My Profile</h5>
-        {% else %}
-            <h5 class="card-title">{{ user.username }}</h5>
-            {% if request.user in followers %}
-                <a href="{% url 'remove_follower' user.id %}" class="btn btn-secondary">Unfollow</a>
-            {% else %}
-                <a href="{% url 'add_follower' user.id %}" class="btn btn-primary">Follow</a>
-            {% endif %}
-        {% endif %}
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Following</h5>
-                        <p class="card-text">{{ following.count }}</p>
+        <div class="card">
+            <div class="card-body">
+                {% if user.id == request.user.id %}
+                    <h5 class="card-title">My Profile</h5>
+                {% else %}
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    {% if request.user in followers %}
+                        <a href="{% url 'remove_follower' user.id %}" class="btn btn-secondary">Unfollow</a>
+                    {% else %}
+                        <a href="{% url 'add_follower' user.id %}" class="btn btn-primary">Follow</a>
+                    {% endif %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Following</h5>
+                                <p class="card-text">{{ following.count }}</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Followers</h5>
-                        <p class="card-text">{{ followers.count }}</p>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Followers</h5>
+                                <p class="card-text">{{ followers.count }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
 
-{% include "network/render_posts.html" with posts=posts %}
+        {% include "network/render_posts.html" with posts=posts %}
 
-{% include "network/pagination.html" with posts=posts nums=nums %}
-
-
-{% else %}
-<h1>Sorry, you must be authenticated to see this view...</h1>
-<a href="{% url 'login' %}">Login here</a>
-
-{% endif %}
+        {% include "network/pagination.html" with posts=posts nums=nums %}
 
 
+    {% else %}
+        <h1>Sorry, you must be authenticated to see this view...</h1>
+        <a href="{% url 'login' %}">Login here</a>
+
+    {% endif %}
 
 {% endblock %}
