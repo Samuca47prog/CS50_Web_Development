@@ -102,10 +102,14 @@ def all_posts(request):
 
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
-
     user_posts = Posts.objects.filter(author=request.user).order_by('-posted_date')
+    user_profile = UserProfile.objects.get(user=user)
+    following = user_profile.following.all()
+    followers = user_profile.followers.all()
 
     return render(request, "network/user_profile.html", {
         "user": user,
-        "user_posts": user_posts
+        "user_posts": user_posts,
+        "following": following,
+        "followers": followers
     })

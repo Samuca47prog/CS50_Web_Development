@@ -4,20 +4,26 @@
 
 {% if user.is_authenticated %}
 
+
+
 <div class="card">
     <div class="card-body">
         {% if user.id == request.user.id %}
             <h5 class="card-title">My Profile</h5>
         {% else %}
             <h5 class="card-title">{{ user.username }}</h5>
-            <a href="#" class="btn btn-secondary">Follow</a>
+            {% if request.user in followers %}
+                <a href="#" class="btn btn-secondary">Unfollow</a>
+            {% else %}
+                <a href="#" class="btn btn-primary">Follow</a>
+            {% endif %}
         {% endif %}
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Following</h5>
-                        <p class="card-text">500</p>
+                        <p class="card-text">{{ following.count }}</p>
                     </div>
                 </div>
             </div>
@@ -25,7 +31,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Followers</h5>
-                        <p class="card-text">300</p>
+                        <p class="card-text">{{ followers.count }}</p>
                     </div>
                 </div>
             </div>
