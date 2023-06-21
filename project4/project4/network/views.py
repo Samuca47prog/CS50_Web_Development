@@ -204,31 +204,6 @@ def edit_post(request, post_id):
 
 
 
-def like_post(request, post_id):
-    post = Posts.objects.get(pk=post_id)
-    user = User.objects.get(id=request.user.id)
-
-    post.likes.add(user)
-
-    return JsonResponse({
-        "data": "d"
-    }, status=200)
-    return all_posts(request)
-
-    
-
-def deslike_post(request, post_id):
-    post = Posts.objects.get(pk=post_id)
-    user = User.objects.get(id=request.user.id)
-
-    post.likes.remove(user)
-
-    return JsonResponse({
-        "data": "d"
-    }, status=200)
-    return all_posts(request)
-
-
 def like_deslike_post(request, post_id):
     post = Posts.objects.get(pk=post_id)
     user = User.objects.get(id=request.user.id)
@@ -245,6 +220,10 @@ def like_deslike_post(request, post_id):
         }, status=400)
 
     return all_posts(request)
+
+
+    return HttpResponseRedirect(reverse("index"))
+    return HttpResponse(status=200)
     return JsonResponse({
         "message": "sucess"
     }, status=200)
