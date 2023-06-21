@@ -12,7 +12,12 @@
             <p class="card-body">{{ post.content }}</p>
         </div>
         <p class="card-text">{{ post.posted_date }}</p>
-        <p class="card-text">Likes</p>
+        <nav aria-label="breadcrumb" style="width: 10rem">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Like</a></li>
+              <li class="breadcrumb-item active" aria-current="page">0</li>
+            </ol>
+          </nav>
         <p class="card-text">Comments</p>
     </div>
 </div>
