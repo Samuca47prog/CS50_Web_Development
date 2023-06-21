@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
@@ -210,6 +210,9 @@ def like_post(request, post_id):
 
     post.likes.add(user)
 
+    return JsonResponse({
+        "data": "d"
+    }, status=200)
     return all_posts(request)
 
     
@@ -220,4 +223,28 @@ def deslike_post(request, post_id):
 
     post.likes.remove(user)
 
+    return JsonResponse({
+        "data": "d"
+    }, status=200)
     return all_posts(request)
+
+
+def like_deslike_post(request, post_id):
+    post = Posts.objects.get(pk=post_id)
+    user = User.objects.get(id=request.user.id)
+
+    try:
+        if(request.user in post.likes.all()):
+            post.likes.remove(user)
+        else:
+            post.likes.add(user)
+
+    except:
+        return JsonResponse({
+            "message": "error"
+        }, status=400)
+
+    return all_posts(request)
+    return JsonResponse({
+        "message": "sucess"
+    }, status=200)

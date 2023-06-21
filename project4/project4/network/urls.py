@@ -16,6 +16,7 @@ urlpatterns = [
     path("edit_post/<post_id>", views.edit_post, name="edit_post"),
     path("like_post/<post_id>", views.like_post, name="like_post"),
     path("deslike_post/<post_id>", views.deslike_post, name="deslike_post"),
+    path("like_deslike_post/<post_id>", views.like_deslike_post, name="like_deslike_post"),
 
     # Profile page
     path("user_profile/<user_id>", views.user_profile, name="user_profile"),
