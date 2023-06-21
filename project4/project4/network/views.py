@@ -199,3 +199,25 @@ def edit_post(request, post_id):
     return render(request, 'network/add_post.html', {
         'form': form,
     })
+
+
+
+
+
+def like_post(request, post_id):
+    post = Posts.objects.get(pk=post_id)
+    user = User.objects.get(id=request.user.id)
+
+    post.likes.add(user)
+
+    return all_posts(request)
+
+    
+
+def deslike_post(request, post_id):
+    post = Posts.objects.get(pk=post_id)
+    user = User.objects.get(id=request.user.id)
+
+    post.likes.remove(user)
+
+    return all_posts(request)

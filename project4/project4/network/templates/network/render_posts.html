@@ -14,8 +14,12 @@
         <p class="card-text">{{ post.posted_date }}</p>
         <nav aria-label="breadcrumb" style="width: 10rem">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Like</a></li>
-              <li class="breadcrumb-item active" aria-current="page">0</li>
+              {% if request.user in post.likes.all %}
+                <li class="breadcrumb-item"><a href="{% url 'deslike_post' post.id %}">deslike</a></li>
+              {% else %}
+                <li class="breadcrumb-item"><a href="{% url 'like_post' post.id %}">Like</a></li>
+              {% endif %}
+              <li class="breadcrumb-item active" aria-current="page">{{ post.likes.count }}</li>
             </ol>
           </nav>
         <p class="card-text">Comments</p>
